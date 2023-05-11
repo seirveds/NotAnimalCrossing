@@ -16,7 +16,7 @@ func run_key_pressed():
 func get_speed():
 	# Hold shift to run
 	if run_key_pressed():
-		return 600
+		return 60
 	return 30
 
 

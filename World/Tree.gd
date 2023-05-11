@@ -19,7 +19,6 @@ func _process(delta):
 
 
 func _on_interaction_area_area_entered(area):
-
 	if area.name == "PlayerInteractionArea":
 		canBeShaken = true
 

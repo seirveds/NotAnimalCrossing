@@ -3,6 +3,9 @@ extends Node2D
 const TILESIZE = 16
 const OFFSET = TILESIZE / 2
 
+const TREENODEPATH = "World/ysort/Trees"
+const STRUCTURENODEPATH = "World/ysort/Structures"
+
 @onready var riverTileMap = $RiverTileMap
 @onready var background = $Background.get_rect()
 
@@ -24,16 +27,17 @@ func _process(delta):
 		worldGen()
 	
 func worldGen():
+	# Order from hardest to easiest to place
 	generateRiver(1)
+	generateHouses()
 	generateTrees(50)
 	
 	
 func clearMap():
 	# TODO generalise this to remove all world node children or smthing
 	# Removes trees
-	var treesNode = get_tree().get_root().get_node("World/ysort/Trees")
-	for n in treesNode.get_children():
-		n.queue_free()
+	clearNodeChildren(TREENODEPATH)
+	clearNodeChildren(STRUCTURENODEPATH)
 	# Remove river tiles
 	riverTileMap.clear()
 	usedTiles = []
@@ -97,7 +101,7 @@ func generateRiver(riverCount: int = 1):
 
 
 func generateTrees(n: int = 10):
-	var treesNode = get_tree().get_root().get_node("World/ysort/Trees")
+	var treesNode = get_tree().get_root().get_node(TREENODEPATH)
 	var TreeFactory = load("res://World/RandomTree.tscn")
 	
 	var succesfulPlacements = 0
@@ -108,12 +112,7 @@ func generateTrees(n: int = 10):
 		# We dont want to place a tree if there is a river tile or other
 		# tree in the tiles around. Use computationally expensive nested loop
 		# to make sure the tiles around the potential new position are free
-		var borderTilesFree = []
-		for x in range(newTreeTileCoordinates.x - 1, newTreeTileCoordinates.x + 2):
-			for y in range(newTreeTileCoordinates.y - 1, newTreeTileCoordinates.y + 2):
-				borderTilesFree.append(Vector2(x, y) not in usedTiles)
-		
-		if not false in borderTilesFree:
+		if borderTilesFree(newTreeTileCoordinates):
 			var tree = TreeFactory.instantiate()
 			treesNode.add_child(tree)
 			tree.global_position = newTreeCoordinates
@@ -122,14 +121,39 @@ func generateTrees(n: int = 10):
 			usedTiles.append(newTreeTileCoordinates)
 
 
+func generateHouses(n: int = 3):
+	# Amount of tiles to keep free around center of house
+	const BORDERSIZE = 2
+	
+	var structuresNode = get_tree().get_root().get_node(STRUCTURENODEPATH)
+	var HouseFactory = load("res://World/House.tscn")
+	
+	for i in range(n):
+		while true:
+			var position = randomCoordinateVector(5)
+			var tilePosition = coordinateToTile(position)
+			if borderTilesFree(tilePosition, BORDERSIZE):
+				var house = HouseFactory.instantiate()
+				structuresNode.add_child(house)
+				house.global_position = position
+
+				house.get_node("Sprite").set("frame", i)
+				usedTiles.append_array(getBorderingTiles(tilePosition, BORDERSIZE))
+				
+				break
+
+
 func spawnPlayer():
 	pass
 
-func randomCoordinateVector() -> Vector2:
-	# Exclude border tiles
+#############
+# Utilities #
+#############
+func randomCoordinateVector(padding: int = 2) -> Vector2:
+	# Exclude padding border tiles
 	var tileCoordinates = Vector2(
-		randi_range(2, mapWidth - 2),
-		randi_range(2, mapHeight - 2)
+		randi_range(padding, mapWidth - padding),
+		randi_range(padding, mapHeight - padding)
 	)
 	# Transform tile coordinates to pixel coordinates of center of tile
 	return tileToCoordinate(tileCoordinates)
@@ -145,3 +169,21 @@ func coordinateToTile(coordinates: Vector2) -> Vector2:
 	# Vector(7, 1) -> Vector(0, 0)
 	return floor(coordinates / float(TILESIZE))
 
+func getBorderingTiles(tile: Vector2, borderSize: int = 1) -> Array:
+	var borderingTiles = []
+	for x in range(tile.x - borderSize, tile.x + borderSize + 1):
+		for y in range(tile.y - borderSize, tile.y + borderSize + 1):
+			borderingTiles.append(Vector2(x, y))
+	return borderingTiles
+
+func borderTilesFree(tile: Vector2, borderSize: int = 1) -> bool:
+	# Given tile coordinates, check if cells around tile are free
+	for borderTile in getBorderingTiles(tile, borderSize):
+		if borderTile in usedTiles:
+			return false
+	return true
+	
+func clearNodeChildren(nodePath: String):
+	var node = get_tree().get_root().get_node(nodePath)
+	for n in node.get_children():
+		n.queue_free()
