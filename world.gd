@@ -16,69 +16,89 @@ var usedTiles = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(mapWidth, "|", mapHeight)
-	generateRiver()
+	worldGen()
+	
+func _process(delta):
+	if Input.is_action_just_pressed("ui_text_backspace"):
+		clearMap()
+		worldGen()
+	
+func worldGen():
+	generateRiver(1)
 	generateTrees(50)
 	
+	
+func clearMap():
+	# TODO generalise this to remove all world node children or smthing
+	# Removes trees
+	var treesNode = get_tree().get_root().get_node("World/ysort/Trees")
+	for n in treesNode.get_children():
+		n.queue_free()
+	# Remove river tiles
+	riverTileMap.clear()
+	usedTiles = []
+	
 
-func generateRiver():
-	const MIN_DOWN_STEPS = 5
-	const MAX_DOWN_STEPS = 10
+func generateRiver(riverCount: int = 1):
+	const MIN_DOWN_STEPS = 8
+	const MAX_DOWN_STEPS = 12
 	const MIN_SIDEWAYS_STEPS = 5
 	const MAX_SIDEWAYS_STEPS = 10
 	const WIDTH = 3
 	
-	var riverCells = []
-	# For now always start river in middle
-	var currentCell = Vector2(floor(mapWidth / 2), -1)
-	riverCells.append(currentCell)
-	
-	# Keep track of amount of iterations, use this in deciding
-	# wether to go down or sideways
-	var stepCount = 0
-	# Used to stop while loop when river reached bottom of map
-	var bottomReached = false
-	
-	while not bottomReached:
-		var stepsToTake = 0
-		var updateVector = Vector2.ZERO
+	for rivers in riverCount:
+		var riverCells = []
+		# For now always start river in middle
+		var currentCell = Vector2(floor(mapWidth / 2), -1)
+		riverCells.append(currentCell)
 		
-		if stepCount % 2:
-			# Sideways
-			stepsToTake = randi_range(MIN_SIDEWAYS_STEPS, MAX_SIDEWAYS_STEPS)
-			if randf() < .5:
-				updateVector = Vector2.LEFT
-			else:
-				updateVector = Vector2.RIGHT
-		else:
-			# Down
-			stepsToTake = randi_range(MIN_DOWN_STEPS, MAX_DOWN_STEPS)
-			updateVector = Vector2.DOWN
+		# Keep track of amount of iterations, use this in deciding
+		# wether to go down or sideways
+		var stepCount = 0
+		# Used to stop while loop when river reached bottom of map
+		var bottomReached = false
+		
+		while not bottomReached:
+			var stepsToTake = 0
+			var updateVector = Vector2.ZERO
 			
-		for i in range(stepsToTake):
-			if (currentCell + updateVector).y >= mapHeight:
-				bottomReached = true
-			elif (
-				(currentCell + updateVector).x < mapWidth - 1 - WIDTH and
-				(currentCell + updateVector).x > 1 + WIDTH
-			):
-				currentCell += updateVector
-				riverCells.append(currentCell)
+			if stepCount % 2:
+				# Sideways
+				stepsToTake = randi_range(MIN_SIDEWAYS_STEPS, MAX_SIDEWAYS_STEPS)
+				if randf() < .5:
+					updateVector = Vector2.LEFT
+				else:
+					updateVector = Vector2.RIGHT
+			else:
+				# Down
+				stepsToTake = randi_range(MIN_DOWN_STEPS, MAX_DOWN_STEPS)
+				updateVector = Vector2.DOWN
 				
-				# Works for both even and odd widths because of flooring division float results
-				# and adding WIDTH % 2 to offset exclusive range max value
-				for x in range(currentCell.x - (WIDTH / 2), currentCell.x + (WIDTH / 2) + (WIDTH % 2)):
-					for y in range(currentCell.y - (WIDTH / 2), currentCell.y + (WIDTH / 2) + (WIDTH % 2)):
-						riverCells.append(Vector2(x, y))
-		
-		stepCount += 1
-		
-	riverTileMap.set_cells_terrain_connect(0, riverCells, 0, 0)
-	usedTiles.append_array(riverCells)
+			for i in range(stepsToTake):
+				if (currentCell + updateVector).y >= mapHeight:
+					bottomReached = true
+				elif (
+					(currentCell + updateVector).x < mapWidth - 1 - WIDTH and
+					(currentCell + updateVector).x > 1 + WIDTH
+				):
+					currentCell += updateVector
+					riverCells.append(currentCell)
+					
+					# Works for both even and odd widths because of flooring division float results
+					# and adding WIDTH % 2 to offset exclusive range max value
+					for x in range(currentCell.x - (WIDTH / 2), currentCell.x + (WIDTH / 2) + (WIDTH % 2)):
+						for y in range(currentCell.y - (WIDTH / 2), currentCell.y + (WIDTH / 2) + (WIDTH % 2)):
+							riverCells.append(Vector2(x, y))
+			
+			stepCount += 1
+			
+		riverTileMap.set_cells_terrain_connect(0, riverCells, 0, 0)
+		usedTiles.append_array(riverCells)
 
 
 func generateTrees(n: int = 10):
 	var treesNode = get_tree().get_root().get_node("World/ysort/Trees")
-	var TreeFactory = load("res://World/Tree.tscn")
+	var TreeFactory = load("res://World/RandomTree.tscn")
 	
 	var succesfulPlacements = 0
 	while succesfulPlacements < n:
@@ -100,6 +120,7 @@ func generateTrees(n: int = 10):
 			
 			succesfulPlacements += 1
 			usedTiles.append(newTreeTileCoordinates)
+
 
 func spawnPlayer():
 	pass

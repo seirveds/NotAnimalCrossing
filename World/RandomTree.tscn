@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca6fnkomcv4g5"]
+
+[ext_resource type="Script" path="res://World/Tree.gd" id="1_nlaho"]
+[ext_resource type="Texture2D" uid="uid://blk1qtwncwl2j" path="res://World/Trees.png" id="2_hwnjp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1sft"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqrrb"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_pbhy2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_x0vwp"]
+resource_name = "shake"
+length = 0.3
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v8kg"]
+_data = {
+"RESET": SubResource("Animation_pbhy2"),
+"Shake": SubResource("Animation_x0vwp")
+}
+
+[node name="RandomTree" type="StaticBody2D"]
+script = ExtResource("1_nlaho")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -17)
+texture = ExtResource("2_hwnjp")
+hframes = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g1sft")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_mqrrb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4v8kg")
+}
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
