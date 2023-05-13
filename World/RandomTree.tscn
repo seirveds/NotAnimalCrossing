@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ca6fnkomcv4g5"]
 
-[ext_resource type="Script" path="res://World/Tree.gd" id="1_nlaho"]
+[ext_resource type="Script" path="res://World/RandomTree.gd" id="1_hlsks"]
 [ext_resource type="Texture2D" uid="uid://blk1qtwncwl2j" path="res://World/Trees.png" id="2_hwnjp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1sft"]
@@ -20,7 +20,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -47,10 +47,10 @@ _data = {
 }
 
 [node name="RandomTree" type="StaticBody2D"]
-script = ExtResource("1_nlaho")
+script = ExtResource("1_hlsks")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-1, -17)
+position = Vector2(0, -17)
 texture = ExtResource("2_hwnjp")
 hframes = 4
 

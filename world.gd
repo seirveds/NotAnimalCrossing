@@ -4,6 +4,7 @@ const TILESIZE = 16
 const OFFSET = TILESIZE / 2
 
 const TREENODEPATH = "World/ysort/Trees"
+const FLOWERNODEPATH = "World/ysort/Flowers"
 const STRUCTURENODEPATH = "World/ysort/Structures"
 
 @onready var riverTileMap = $RiverTileMap
@@ -31,13 +32,15 @@ func worldGen():
 	generateRiver(1)
 	generateHouses()
 	generateTrees(50)
+	generateFlowers(100)
 	
 	
 func clearMap():
 	# TODO generalise this to remove all world node children or smthing
-	# Removes trees
+	# Removes placeable nodes
 	clearNodeChildren(TREENODEPATH)
 	clearNodeChildren(STRUCTURENODEPATH)
+	clearNodeChildren(FLOWERNODEPATH)
 	# Remove river tiles
 	riverTileMap.clear()
 	usedTiles = []
@@ -62,9 +65,14 @@ func generateRiver(riverCount: int = 1):
 		# Used to stop while loop when river reached bottom of map
 		var bottomReached = false
 		
+		var bridgeCells = []
+		
 		while not bottomReached:
 			var stepsToTake = 0
 			var updateVector = Vector2.ZERO
+			# Cells of the middle of the river, before adding padding
+			# Used for bridge placement
+			var coreCells = []
 			
 			if stepCount % 2:
 				# Sideways
@@ -87,38 +95,52 @@ func generateRiver(riverCount: int = 1):
 				):
 					currentCell += updateVector
 					riverCells.append(currentCell)
+					coreCells.append(currentCell)
 					
 					# Works for both even and odd widths because of flooring division float results
 					# and adding WIDTH % 2 to offset exclusive range max value
 					for x in range(currentCell.x - (WIDTH / 2), currentCell.x + (WIDTH / 2) + (WIDTH % 2)):
 						for y in range(currentCell.y - (WIDTH / 2), currentCell.y + (WIDTH / 2) + (WIDTH % 2)):
 							riverCells.append(Vector2(x, y))
+							
+			if stepCount == 2:
+				var middle = stepsToTake / 2
+				# Take 3 cells from the middle as bridge is 3 tiles 'high'
+				for value in coreCells.slice(middle - 1, middle + 2):
+					for x in range(value.x - (WIDTH / 2), value.x + (WIDTH / 2) + 1):
+						bridgeCells.append(Vector2(x, value.y))
 			
 			stepCount += 1
 			
 		riverTileMap.set_cells_terrain_connect(0, riverCells, 0, 0)
+		# Erase after set_cells_terrain_connect to prevent autotile from
+		# patching the river before and after bridge
+		for cell in bridgeCells:
+			riverTileMap.erase_cell(0, cell)
+		riverTileMap.set_cell(
+			0,  # Layer
+			bridgeCells[bridgeCells.size() / 2],  # Map coords
+			1,  # Terrain id
+			Vector2i(0, 0)  # Atlas coords
+		)
 		usedTiles.append_array(riverCells)
 
 
 func generateTrees(n: int = 10):
-	var treesNode = get_tree().get_root().get_node(TREENODEPATH)
-	var TreeFactory = load("res://World/RandomTree.tscn")
+	placeAtRandomPosition(
+		TREENODEPATH,
+		"res://World/RandomTree.tscn",
+		n,
+		1
+	)
 	
-	var succesfulPlacements = 0
-	while succesfulPlacements < n:
-		var newTreeCoordinates = randomCoordinateVector()
-		var newTreeTileCoordinates = coordinateToTile(newTreeCoordinates)
-		
-		# We dont want to place a tree if there is a river tile or other
-		# tree in the tiles around. Use computationally expensive nested loop
-		# to make sure the tiles around the potential new position are free
-		if borderTilesFree(newTreeTileCoordinates):
-			var tree = TreeFactory.instantiate()
-			treesNode.add_child(tree)
-			tree.global_position = newTreeCoordinates
-			
-			succesfulPlacements += 1
-			usedTiles.append(newTreeTileCoordinates)
+func generateFlowers(n: int = 100):
+	placeAtRandomPosition(
+		FLOWERNODEPATH,
+		"res://World/PickableFlower.tscn",
+		n,
+		0
+	)
 
 
 func generateHouses(n: int = 3):
@@ -145,6 +167,26 @@ func generateHouses(n: int = 3):
 
 func spawnPlayer():
 	pass
+	
+func placeAtRandomPosition(targetNodePath: String, resourcePath: String, amount: int, border: int = 1):
+	var targetNode = get_tree().get_root().get_node(targetNodePath)
+	var factory = load(resourcePath)
+	
+	var succesfulPlacements = 0
+	while succesfulPlacements < amount:
+		var newCoordinates = randomCoordinateVector()
+		var newTileCoordinates = coordinateToTile(newCoordinates)
+		
+		# We dont want to place a tree if there is a river tile or other
+		# tree in the tiles around. Use computationally expensive nested loop
+		# to make sure the tiles around the potential new position are free
+		if borderTilesFree(newTileCoordinates, border):
+			var instance = factory.instantiate()
+			targetNode.add_child(instance)
+			instance.global_position = newCoordinates
+			
+			succesfulPlacements += 1
+			usedTiles.append(newTileCoordinates)
 
 #############
 # Utilities #
@@ -152,8 +194,8 @@ func spawnPlayer():
 func randomCoordinateVector(padding: int = 2) -> Vector2:
 	# Exclude padding border tiles
 	var tileCoordinates = Vector2(
-		randi_range(padding, mapWidth - padding),
-		randi_range(padding, mapHeight - padding)
+		randi_range(padding, mapWidth - padding - 1),
+		randi_range(padding, mapHeight - padding - 1)
 	)
 	# Transform tile coordinates to pixel coordinates of center of tile
 	return tileToCoordinate(tileCoordinates)

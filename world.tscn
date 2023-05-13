@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://du6k03w5k6xsg"]
+[gd_scene load_steps=16 format=3 uid="uid://du6k03w5k6xsg"]
 
 [ext_resource type="Texture2D" uid="uid://ckjg63uq881jk" path="res://World/Grass.png" id="1_7gge7"]
 [ext_resource type="Script" path="res://world.gd" id="1_uj4vn"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="1_yxipm"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/water_tileset.png" id="2_s61ys"]
 [ext_resource type="Texture2D" uid="uid://cky7bn3cee5ih" path="res://World/cliffs_tileset.png" id="4_l4c4h"]
+[ext_resource type="Texture2D" uid="uid://cq4b7iof23fif" path="res://World/BridgeTiles.png" id="4_qxbqu"]
 [ext_resource type="Script" path="res://DayNightCycle.gd" id="5_wgfs6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2lyf3"]
@@ -479,13 +480,26 @@ texture = ExtResource("2_s61ys")
 8:4/0/terrains_peering_bit/left_side = 0
 8:4/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2mrrq"]
+texture = ExtResource("4_qxbqu")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, -17, -24, -17)
+0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-24, 14, 24, 14, 24, 24, -24, 24)
+
 [sub_resource type="TileSet" id="TileSet_djkm4"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Terrain 0"
-terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_0/name = "Water"
+terrain_set_0/terrain_0/color = Color(0, 0.509804, 0.921569, 1)
+terrain_set_1/mode = 0
+terrain_set_1/terrain_0/name = "Bridge"
+terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_2lyf3")
+sources/1 = SubResource("TileSetAtlasSource_2mrrq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyhff"]
 texture = ExtResource("4_l4c4h")
@@ -494,7 +508,6 @@ texture = ExtResource("4_l4c4h")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/terrain = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -503,37 +516,30 @@ texture = ExtResource("4_l4c4h")
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
-3:0/0/terrain = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:0/0 = 0
-4:0/0/terrain = 0
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
-0:1/0/terrain = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
-1:1/0/terrain = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
-2:1/0/terrain = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
-3:1/0/terrain = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
-4:1/0/terrain = 0
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -542,7 +548,6 @@ texture = ExtResource("4_l4c4h")
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
-1:2/0/terrain = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -696,6 +701,9 @@ limit_bottom = 448
 y_sort_enabled = true
 
 [node name="Trees" type="Node2D" parent="ysort"]
+y_sort_enabled = true
+
+[node name="Flowers" type="Node2D" parent="ysort"]
 y_sort_enabled = true
 
 [node name="DayNightCycle" type="CanvasModulate" parent="."]

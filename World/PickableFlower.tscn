@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxoy4f8v4he88"]
+
+[ext_resource type="Script" path="res://World/PickableFlower.gd" id="1_ny74v"]
+[ext_resource type="Texture2D" uid="uid://bp0hjkshx8n7o" path="res://World/PickableFlower.png" id="2_jm5ml"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_waxdi"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_h5hph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wxug4"]
+resource_name = "Shake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1m3by"]
+_data = {
+"RESET": SubResource("Animation_h5hph"),
+"Shake": SubResource("Animation_wxug4")
+}
+
+[node name="PickableFlower" type="StaticBody2D"]
+script = ExtResource("1_ny74v")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_jm5ml")
+hframes = 5
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+scale = Vector2(0.76, 0.76)
+shape = SubResource("CircleShape2D_waxdi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1m3by")
+}
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
