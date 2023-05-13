@@ -10,7 +10,7 @@ var pickable = false
 func _ready():
 	# Using frames we can pick a random tree sprite to show
 	var frameCount = sprite.get("hframes")
-	var randomFrameNumber = randi_range(1, frameCount)
+	var randomFrameNumber = randi_range(0, frameCount - 1)
 	sprite.set("frame", randomFrameNumber)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://du6k03w5k6xsg"]
+[gd_scene load_steps=17 format=3 uid="uid://du6k03w5k6xsg"]
 
 [ext_resource type="Texture2D" uid="uid://ckjg63uq881jk" path="res://World/Grass.png" id="1_7gge7"]
 [ext_resource type="Script" path="res://world.gd" id="1_uj4vn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cky7bn3cee5ih" path="res://World/cliffs_tileset.png" id="4_l4c4h"]
 [ext_resource type="Texture2D" uid="uid://cq4b7iof23fif" path="res://World/BridgeTiles.png" id="4_qxbqu"]
 [ext_resource type="Script" path="res://DayNightCycle.gd" id="5_wgfs6"]
+[ext_resource type="PackedScene" uid="uid://cmeuuddqau4qs" path="res://Critters/Butterfly.tscn" id="8_3yxo8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2lyf3"]
 texture = ExtResource("2_s61ys")
@@ -97,6 +98,7 @@ texture = ExtResource("2_s61ys")
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0/terrains_peering_bit/right_side = 0
 9:0/0/terrains_peering_bit/bottom_right_corner = 0
 9:0/0/terrains_peering_bit/bottom_side = 0
 9:0/0/terrains_peering_bit/left_side = 0
@@ -490,7 +492,7 @@ texture_region_size = Vector2i(48, 48)
 0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-24, 14, 24, 14, 24, 24, -24, 24)
 
 [sub_resource type="TileSet" id="TileSet_djkm4"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Water"
@@ -669,10 +671,11 @@ metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(400, 225)
+position = Vector2(400, 224)
 texture = ExtResource("1_7gge7")
 region_enabled = true
 region_rect = Rect2(0, 0, 800, 450)
+metadata/_edit_lock_ = true
 
 [node name="RiverTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_djkm4")
@@ -687,7 +690,7 @@ layer_0/tile_data = PackedInt32Array(0, 262144, 1, 49, 196608, 1, 1, 65536, 2, 2
 y_sort_enabled = true
 
 [node name="Alex" parent="ysort" instance=ExtResource("1_yxipm")]
-position = Vector2(160, 96)
+position = Vector2(72, 104)
 collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="ysort/Alex"]
@@ -715,3 +718,7 @@ script = ExtResource("5_wgfs6")
 libraries = {
 "": SubResource("AnimationLibrary_4bbqb")
 }
+
+[node name="Butterfly" parent="." instance=ExtResource("8_3yxo8")]
+position = Vector2(64, 72)
+slide_on_ceiling = false

@@ -360,7 +360,7 @@ size = Vector2(7, 7)
 size = Vector2(4, 4)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_trgjv")
 
@@ -394,16 +394,16 @@ gizmo_extents = 11.0
 
 [node name="PlayerInteractionArea" type="Area2D" parent="DirectionMarker"]
 position = Vector2(8, -6.99382e-07)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 16
+collision_mask = 16
 
 [node name="InteractionAreaHitbox" type="CollisionShape2D" parent="DirectionMarker/PlayerInteractionArea"]
 light_mask = 2
 shape = SubResource("RectangleShape2D_s00iy")
 
 [node name="PlayerUnderfootInteractionArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 16
+collision_mask = 16
 
 [node name="PlayerUnderfootInteractionHitbox" type="CollisionShape2D" parent="PlayerUnderfootInteractionArea"]
 position = Vector2(0, 2)

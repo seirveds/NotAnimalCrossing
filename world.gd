@@ -30,9 +30,10 @@ func _process(delta):
 func worldGen():
 	# Order from hardest to easiest to place
 	generateRiver(1)
+	generatePonds(1)
 	generateHouses()
-	generateTrees(50)
-	generateFlowers(100)
+	generateTrees(30)
+	generateFlowers(80)
 	
 	
 func clearMap():
@@ -126,6 +127,27 @@ func generateRiver(riverCount: int = 1):
 		usedTiles.append_array(riverCells)
 
 
+func generatePonds(n: int = 1):
+	for i in range(n):
+		while true:
+			# Big padding, dont want pond to close to edge of map
+			var newCoordinates = randomCoordinateVector(8)
+			var newTileCoordinates = coordinateToTile(newCoordinates)
+			
+			# Big border, dont want pond too close to river
+			if borderTilesFree(newTileCoordinates, 5):
+				var pondTiles = getBorderingTiles(newTileCoordinates)
+				# Pick random corner and add extra 3 by 3 pond area
+				# Because of symmetry only top 2 corners are enough
+				var corner = pondTiles[[0, 2].pick_random()]
+				pondTiles.append_array(getBorderingTiles(corner))
+				
+
+				riverTileMap.set_cells_terrain_connect(0, pondTiles, 0, 0)
+				usedTiles.append_array(pondTiles)
+				break
+
+
 func generateTrees(n: int = 10):
 	placeAtRandomPosition(
 		TREENODEPATH,
@@ -133,7 +155,8 @@ func generateTrees(n: int = 10):
 		n,
 		1
 	)
-	
+
+
 func generateFlowers(n: int = 100):
 	placeAtRandomPosition(
 		FLOWERNODEPATH,
@@ -167,6 +190,7 @@ func generateHouses(n: int = 3):
 
 func spawnPlayer():
 	pass
+	
 	
 func placeAtRandomPosition(targetNodePath: String, resourcePath: String, amount: int, border: int = 1):
 	var targetNode = get_tree().get_root().get_node(targetNodePath)
