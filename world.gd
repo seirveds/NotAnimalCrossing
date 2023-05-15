@@ -1,5 +1,9 @@
 extends Node2D
 
+# Width and height in pixels
+@export var width = 800
+@export var height = 450
+
 const TILESIZE = 16
 const OFFSET = TILESIZE / 2
 
@@ -8,11 +12,12 @@ const FLOWERNODEPATH = "World/ysort/Flowers"
 const STRUCTURENODEPATH = "World/ysort/Structures"
 
 @onready var riverTileMap = $RiverTileMap
+@onready var cliffTileMap = $CliffTileMap
 @onready var background = $Background.get_rect()
 
 # Width and height in tiles, not pixels
-@onready var mapHeight = floor(background.size.y / TILESIZE)
-@onready var mapWidth = floor(background.size.x / TILESIZE)
+@onready var mapHeight = floor(height / TILESIZE)
+@onready var mapWidth = floor(width / TILESIZE)
 
 var usedTiles = []
 
@@ -26,11 +31,58 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		clearMap()
 		worldGen()
+		
+func placeGrass():
+	const GRASSTILEPROBAS = [0, 0, 0, 0, 0, 0, 0, 0, 1, 2]
+	for x in range(mapWidth):
+		for y in range(mapHeight):
+			riverTileMap.set_cell(
+				0,  # Layer
+				Vector2i(x, y),  # Coords
+				2,  # Source ID
+				Vector2i(GRASSTILEPROBAS.pick_random(), 0)  # Atlas coords
+			)
+			
+func placeCliffs():
+	var corners = [
+		[Vector2i(0, 0), Vector2i(4, 1)],  # Top left
+		[Vector2i(mapWidth - 1, 0), Vector2i(3, 1)],  # Top right
+		[Vector2i(0, mapHeight - 1), Vector2i(2, 2)],  # Bottom left
+		[Vector2i(mapWidth - 1, mapHeight - 1), Vector2i(0, 2)],  # Bottom right
+	]
+	
+	var sides = []
+	for y in range(1, mapHeight - 1):
+		sides.append_array([
+			[Vector2i(0, y), Vector2i(2, 1)],
+			[Vector2i(mapWidth - 1, y), Vector2i(0, 1)]
+		])
+		
+	var top = []
+	for x in range(1, mapWidth - 1):
+		top.append([Vector2i(x, 0), Vector2i(1, 2)])
+
+	for coordinates in corners + sides + top:
+		cliffTileMap.set_cell(
+			0,  # Layer
+			coordinates[0],  # Coords
+			0,  # Source ID
+			coordinates[1],  # Atlas coords
+		)
+	
+	
+func placeBeach():
+	pass
+	
 	
 func worldGen():
 	# Order from hardest to easiest to place
+	# Tilemap placement
+	placeGrass()
+	placeCliffs()
 	generateRiver(1)
 	generatePonds(1)
+	# Node placement
 	generateHouses()
 	generateTrees(30)
 	generateFlowers(80)

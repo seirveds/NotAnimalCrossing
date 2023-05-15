@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://du6k03w5k6xsg"]
+[gd_scene load_steps=19 format=3 uid="uid://du6k03w5k6xsg"]
 
 [ext_resource type="Texture2D" uid="uid://ckjg63uq881jk" path="res://World/Grass.png" id="1_7gge7"]
 [ext_resource type="Script" path="res://world.gd" id="1_uj4vn"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="1_yxipm"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/water_tileset.png" id="2_s61ys"]
+[ext_resource type="Texture2D" uid="uid://cjvrt3di5mks4" path="res://World/grass_tileset.png" id="3_xv06k"]
 [ext_resource type="Texture2D" uid="uid://cky7bn3cee5ih" path="res://World/cliffs_tileset.png" id="4_l4c4h"]
 [ext_resource type="Texture2D" uid="uid://cq4b7iof23fif" path="res://World/BridgeTiles.png" id="4_qxbqu"]
 [ext_resource type="Script" path="res://DayNightCycle.gd" id="5_wgfs6"]
@@ -491,6 +492,18 @@ texture_region_size = Vector2i(48, 48)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, -17, -24, -17)
 0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-24, 14, 24, 14, 24, 24, -24, 24)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7bnlt"]
+texture = ExtResource("3_xv06k")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_djkm4"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
@@ -502,6 +515,7 @@ terrain_set_1/terrain_0/name = "Bridge"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_2lyf3")
 sources/1 = SubResource("TileSetAtlasSource_2mrrq")
+sources/2 = SubResource("TileSetAtlasSource_7bnlt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyhff"]
 texture = ExtResource("4_l4c4h")
@@ -670,6 +684,7 @@ script = ExtResource("1_uj4vn")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 texture_repeat = 2
 position = Vector2(400, 224)
 texture = ExtResource("1_7gge7")
@@ -684,7 +699,6 @@ format = 2
 [node name="CliffTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rg71w")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 262144, 1, 49, 196608, 1, 1, 65536, 2, 2, 65536, 2, 3, 65536, 2, 4, 65536, 2, 5, 65536, 2, 6, 65536, 2, 7, 65536, 2, 8, 65536, 2, 9, 65536, 2, 10, 65536, 2, 11, 65536, 2, 12, 65536, 2, 13, 65536, 2, 14, 65536, 2, 15, 65536, 2, 16, 65536, 2, 17, 65536, 2, 18, 65536, 2, 19, 65536, 2, 20, 65536, 2, 21, 65536, 2, 22, 65536, 2, 27, 0, 2, 28, 65536, 2, 29, 65536, 2, 30, 65536, 2, 31, 65536, 2, 32, 65536, 2, 33, 65536, 2, 34, 65536, 2, 35, 65536, 2, 36, 65536, 2, 37, 65536, 2, 38, 65536, 2, 39, 65536, 2, 40, 65536, 2, 41, 65536, 2, 42, 65536, 2, 43, 65536, 2, 44, 65536, 2, 45, 65536, 2, 46, 65536, 2, 47, 65536, 2, 48, 65536, 2, 65585, 0, 1, 131121, 0, 1, 196657, 0, 1, 262193, 0, 1, 327729, 0, 1, 393265, 0, 1, 458801, 0, 1, 524337, 0, 1, 589873, 0, 1, 655409, 0, 1, 720945, 0, 1, 786481, 0, 1, 852017, 0, 1, 917553, 0, 1, 983089, 0, 1, 1048625, 0, 1, 1114161, 0, 1, 1179697, 0, 1, 1245233, 0, 1, 1310769, 0, 1, 1376305, 0, 1, 1441841, 0, 1, 1507377, 0, 1, 1572913, 0, 1, 1638449, 0, 1, 1703985, 0, 1, 1769521, 0, 1, 65536, 131072, 1, 131072, 131072, 1, 196608, 131072, 1, 262144, 131072, 1, 327680, 131072, 1, 393216, 131072, 1, 458752, 131072, 1, 524288, 131072, 1, 589824, 131072, 1, 655360, 131072, 1, 720896, 131072, 1, 786432, 131072, 1, 851968, 131072, 1, 917504, 131072, 1, 983040, 131072, 1, 1048576, 131072, 1, 1114112, 131072, 1, 1179648, 131072, 1, 1245184, 131072, 1, 1310720, 131072, 1, 1376256, 131072, 1, 1441792, 131072, 1, 1507328, 131072, 1, 1572864, 131072, 1, 1638400, 131072, 1, 1703936, 131072, 1, 1769472, 131072, 1, 23, 131072, 2)
 
 [node name="ysort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -695,10 +709,6 @@ collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="ysort/Alex"]
 position = Vector2(0, -6)
-limit_left = 0
-limit_top = 0
-limit_right = 800
-limit_bottom = 448
 
 [node name="Structures" type="Node2D" parent="ysort"]
 y_sort_enabled = true
