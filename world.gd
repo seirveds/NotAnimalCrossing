@@ -4,6 +4,9 @@ extends Node2D
 @export var width = 800
 @export var height = 450
 
+# RNG seed
+@export var randomSeed = 1337
+
 # Dependent on tilemap size
 const TILESIZE = 16
 const OFFSET = TILESIZE / 2
@@ -33,6 +36,7 @@ var usedTiles = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	seed(randomSeed)
 	setCameraLimits()
 	print(mapWidth, "|", mapHeight)
 	worldGen()
