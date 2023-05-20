@@ -15,10 +15,14 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=180
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
@@ -61,7 +65,9 @@ interact={
 2d_render/layer_2="Water"
 2d_render/layer_3="Player"
 2d_physics/layer_1="World"
+2d_navigation/layer_1="Flying"
 2d_physics/layer_2="Water"
+2d_navigation/layer_2="Ground"
 2d_physics/layer_3="Player"
 2d_physics/layer_5="Interaction"
 
