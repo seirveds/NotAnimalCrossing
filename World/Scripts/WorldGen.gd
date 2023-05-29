@@ -38,15 +38,15 @@ static func generateWorld(tree: SceneTree, tilemap: TileMap):
 	placeBeach(tilemap)
 	placeCliffs(tilemap)
 	generateRiver(tilemap, 1)
-	generatePonds(tilemap, 1)
+	generatePonds(tilemap, 2)
 	
 	# Node placement
-	generateHouses(tree)
+	generateHouses(tree, tilemap)
 	generateTrees(tree, tilemap, 30)
 	generateFlowers(tree, 80)
 	
 	
-static func clearWorld(tree: SceneTree, tilemap: TileMap = $TileMap):
+static func clearWorld(tree: SceneTree, tilemap: TileMap):
 	# Removes placeable nodes
 	# TODO
 	var nodesToClear = [
@@ -66,8 +66,8 @@ static func clearWorld(tree: SceneTree, tilemap: TileMap = $TileMap):
 #####################
 
 static func placeGrass(tilemap: TileMap):
-	for x in range(Settings.MAPWIDTH):
-		for y in range(Settings.MAPHEIGHT - BEACHSIZE):
+	for x in range(Settings.WIDTH):
+		for y in range(Settings.HEIGHT - BEACHSIZE):
 			tilemap.set_cell(
 				0,  # Layer
 				Vector2i(x, y),  # Coords
@@ -81,20 +81,20 @@ static func placeCliffs(tilemap: TileMap):
 	# from other tilemap
 	var corners = [
 		[Vector2i(0, 0), Vector2i(4, 1)],  # Top left
-		[Vector2i(Settings.MAPWIDTH - 1, 0), Vector2i(3, 1)],  # Top right
-		[Vector2i(0, Settings.MAPHEIGHT - 2), Vector2i(2, 2)],  # Bottom left
-		[Vector2i(Settings.MAPWIDTH - 1, Settings.MAPHEIGHT - 2), Vector2i(0, 2)],  # Bottom right
+		[Vector2i(Settings.WIDTH - 1, 0), Vector2i(3, 1)],  # Top right
+		[Vector2i(0, Settings.HEIGHT - 2), Vector2i(2, 2)],  # Bottom left
+		[Vector2i(Settings.WIDTH - 1, Settings.HEIGHT - 2), Vector2i(0, 2)],  # Bottom right
 	]
 	
 	var sides = []
-	for y in range(1, Settings.MAPHEIGHT - 2):
+	for y in range(1, Settings.HEIGHT - 2):
 		sides.append_array([
 			[Vector2i(0, y), Vector2i(2, 1)],
-			[Vector2i(Settings.MAPWIDTH - 1, y), Vector2i(0, 1)]
+			[Vector2i(Settings.WIDTH - 1, y), Vector2i(0, 1)]
 		])
 		
 	var top = []
-	for x in range(1, Settings.MAPWIDTH - 1):
+	for x in range(1, Settings.WIDTH - 1):
 		top.append([Vector2i(x, 0), Vector2i(1, 2)])
 
 	for coordPair in corners + sides + top:
@@ -108,7 +108,7 @@ static func placeCliffs(tilemap: TileMap):
 	# Remove cliffs where river enters map
 	# TODO start of river is hardcoded, change this when
 	# river generation code changes
-	var middle = Vector2i(floor(Settings.MAPWIDTH / 2), 0)
+	var middle = Vector2i(floor(Settings.WIDTH / 2), 0)
 	for x in range(middle.x - 1, middle.x + 2):
 		tilemap.erase_cell(0, Vector2i(x, 0))
 	
@@ -121,27 +121,27 @@ static func placeBeach(tilemap: TileMap):
 	# Code to place bottom BEACHSIZE rows of tiles
 
 	# Grass and end tile underneath cliff tiles on bottom sides
-	for x in [0, Settings.MAPWIDTH - 1]:
-		for y in range(Settings.MAPHEIGHT - BEACHSIZE, Settings.MAPHEIGHT):
+	for x in [0, Settings.WIDTH - 1]:
+		for y in range(Settings.HEIGHT - BEACHSIZE, Settings.HEIGHT):
 			var atlasCoords = Vector2i.ZERO
-			if y == Settings.MAPHEIGHT - 1:
+			if y == Settings.HEIGHT - 1:
 				atlasCoords = Vector2i(1, 4)
 			tilemap.set_cell(0, Vector2i(x, y), 2, atlasCoords)
 
 	# Rest of beach
-	for y in range(Settings.MAPHEIGHT - BEACHSIZE, Settings.MAPHEIGHT):
+	for y in range(Settings.HEIGHT - BEACHSIZE, Settings.HEIGHT):
 		var atlasY = 2
 		# Transition tiles to grass and ocean
-		if y == Settings.MAPHEIGHT - BEACHSIZE:
+		if y == Settings.HEIGHT - BEACHSIZE:
 			atlasY = 1
-		elif y == Settings.MAPHEIGHT - 1:
+		elif y == Settings.HEIGHT - 1:
 			atlasY = 3
 
-		for x in range(1, Settings.MAPWIDTH - 1):
+		for x in range(1, Settings.WIDTH - 1):
 			var atlasX = 1
 			if x == 1:
 				atlasX = 0
-			elif x == Settings.MAPWIDTH - 2:
+			elif x == Settings.WIDTH - 2:
 				atlasX = 2
 			tilemap.set_cell(
 				0,  # Layer
@@ -151,8 +151,8 @@ static func placeBeach(tilemap: TileMap):
 			)
 	
 	# Sea tiles
-	for x in range(Settings.MAPWIDTH):
-		for y in range(Settings.MAPHEIGHT, Settings.MAPHEIGHT + 4):
+	for x in range(Settings.WIDTH):
+		for y in range(Settings.HEIGHT, Settings.HEIGHT + 4):
 			tilemap.set_cell(0, Vector2i(x, y), 2, Vector2i(2, 4))
 
 
@@ -163,7 +163,7 @@ static func generateRiver(tilemap: TileMap, riverCount: int = 1):
 	for rivers in riverCount:
 		var riverCells = []
 		# For now always start river in middle
-		var currentCell = Vector2i(floor(Settings.MAPWIDTH / 2), -1)
+		var currentCell = Vector2i(floor(Settings.WIDTH / 2), -1)
 		riverCells.append(currentCell)
 		
 		# Keep track of amount of iterations, use this in deciding
@@ -197,10 +197,10 @@ static func generateRiver(tilemap: TileMap, riverCount: int = 1):
 				updateVector = Vector2i.DOWN
 				
 			for i in range(stepsToTake):
-				if (currentCell + updateVector).y >= Settings.MAPHEIGHT - BEACHSIZE - BEACHPADDING:
+				if (currentCell + updateVector).y >= Settings.HEIGHT - BEACHSIZE - BEACHPADDING:
 					finalStretch = true
 				elif (
-					(currentCell + updateVector).x < Settings.MAPWIDTH - 1 - RIVERWIDTH and
+					(currentCell + updateVector).x < Settings.WIDTH - 1 - RIVERWIDTH and
 					(currentCell + updateVector).x > 1 + RIVERWIDTH
 				):
 					currentCell += updateVector
@@ -283,7 +283,7 @@ static func generatePonds(tilemap: TileMap, amount: int = 2):
 	for i in range(amount):
 		while true:
 			# Big padding, dont want pond to close to edge of map
-			var newCoordinates = Utils.randomCoordinateVector(Settings.MAPWIDTH, Settings.MAPHEIGHT, 8)
+			var newCoordinates = Utils.randomCoordinateVector(Settings.WIDTH, Settings.HEIGHT, 8)
 			var newTileCoordinates = Utils.coordinateToTile(newCoordinates)
 			
 			# Big border, dont want pond too close to river
@@ -307,7 +307,7 @@ static func generateTrees(tree: SceneTree, tilemap: TileMap, amount: int = 10):
 	placeAtRandomPosition(
 		tree,
 		Settings.TREENODEPATH,
-		"res://World/RandomTree.tscn",
+		"res://World/Scenes/RandomTree.tscn",
 		amount,
 		1,  # border
 		true,  # excludeBeach
@@ -320,19 +320,19 @@ static func generateFlowers(tree: SceneTree, amount: int = 100):
 	placeAtRandomPosition(
 		tree, 
 		Settings.FLOWERNODEPATH,
-		"res://World/PickableFlower.tscn",
+		"res://World/Scenes/PickableFlower.tscn",
 		amount,
 		0,  # Border
 	)
 
 
-static func generateHouses(tree: SceneTree, amount: int = 3):
+static func generateHouses(tree: SceneTree, tilemap: TileMap, amount: int = 3):
 	var structuresNode = tree.get_root().get_node(Settings.STRUCTURENODEPATH)
-	var HouseFactory = load("res://World/House.tscn")
+	var HouseFactory = load("res://World/Scenes/House.tscn")
 	
 	for i in range(amount):
 		while true:
-			var position = Utils.randomCoordinateVector(Settings.MAPWIDTH, Settings.MAPHEIGHT, 5)
+			var position = Utils.randomCoordinateVector(Settings.WIDTH, Settings.HEIGHT, 5)
 			var tilePosition = Utils.coordinateToTile(position)
 			if Utils.borderTilesFree(tilePosition, HOUSEBORDERSIZE):
 				var house = HouseFactory.instantiate()
@@ -343,6 +343,11 @@ static func generateHouses(tree: SceneTree, amount: int = 3):
 				Globals.usedTiles.append_array(
 					Utils.getBorderingTiles(tilePosition, HOUSEBORDERSIZE)
 				)
+				
+				# Remove tiles house placed on from navigation mesh
+				for y in range(tilePosition.y - 2, tilePosition.y + 1):
+					for x in range(tilePosition.x - 1, tilePosition.x + 2):
+						tilemap.set_cell(0, Vector2i(x, y), 2, Vector2i(0, 4))
 				
 				break
 
@@ -366,7 +371,7 @@ static func placeAtRandomPosition(
 	
 	var succesfulPlacements = 0
 	while succesfulPlacements < amount:
-		var newCoordinates = Utils.randomCoordinateVector(Settings.MAPWIDTH, Settings.MAPHEIGHT)
+		var newCoordinates = Utils.randomCoordinateVector(Settings.WIDTH, Settings.HEIGHT)
 		var newTileCoordinates = Utils.coordinateToTile(newCoordinates)
 		
 		# We dont want to place a tree if there is a river tile or other
@@ -377,7 +382,7 @@ static func placeAtRandomPosition(
 		# If excludeBeach flag set to true dont place stuff on beach tiles
 		var notOnBeach = false
 		if excludeBeach:
-			notOnBeach = newTileCoordinates.y < (Settings.MAPHEIGHT - BEACHSIZE)
+			notOnBeach = newTileCoordinates.y < (Settings.HEIGHT - BEACHSIZE)
 		else:
 			notOnBeach = true
 		if borderFree and notOnBeach:

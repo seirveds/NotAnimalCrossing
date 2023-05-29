@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxoy4f8v4he88"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://World/PickableFlower.gd" id="1_ny74v"]
-[ext_resource type="Texture2D" uid="uid://bp0hjkshx8n7o" path="res://World/PickableFlower.png" id="2_jm5ml"]
+[ext_resource type="Script" path="res://World/Scripts/PickableFlower.gd" id="1_ny74v"]
+[ext_resource type="Texture2D" uid="uid://bp0hjkshx8n7o" path="res://World/Assets/PickableFlower.png" id="2_jm5ml"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_waxdi"]
 radius = 8.0

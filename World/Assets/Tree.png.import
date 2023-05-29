@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cky7bn3cee5ih"
-path="res://.godot/imported/cliffs_tileset.png-0069f1be67e9adf12b7feb3b019da383.ctex"
+uid="uid://6pon63avh82c"
+path="res://.godot/imported/Tree.png-ea5af5779b59a608214e984f830d05e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/cliffs_tileset.png"
-dest_files=["res://.godot/imported/cliffs_tileset.png-0069f1be67e9adf12b7feb3b019da383.ctex"]
+source_file="res://World/Assets/Tree.png"
+dest_files=["res://.godot/imported/Tree.png-ea5af5779b59a608214e984f830d05e1.ctex"]
 
 [params]
 

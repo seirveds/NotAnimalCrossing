@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca6fnkomcv4g5"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://World/RandomTree.gd" id="1_hlsks"]
-[ext_resource type="Texture2D" uid="uid://blk1qtwncwl2j" path="res://World/Trees.png" id="2_hwnjp"]
+[ext_resource type="Script" path="res://World/Scripts/RandomTree.gd" id="1_hlsks"]
+[ext_resource type="Texture2D" uid="uid://blk1qtwncwl2j" path="res://World/Assets/Trees.png" id="2_hwnjp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1sft"]
 radius = 4.0

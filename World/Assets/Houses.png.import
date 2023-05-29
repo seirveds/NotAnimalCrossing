@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq4b7iof23fif"
-path="res://.godot/imported/BridgeTiles.png-c3baddf9ebc1dec4330b370ea53ca9fc.ctex"
+uid="uid://baxewpo1jauiq"
+path="res://.godot/imported/Houses.png-dec58ac0791ccdc7dc6c1b2578b887d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/BridgeTiles.png"
-dest_files=["res://.godot/imported/BridgeTiles.png-c3baddf9ebc1dec4330b370ea53ca9fc.ctex"]
+source_file="res://World/Assets/Houses.png"
+dest_files=["res://.godot/imported/Houses.png-dec58ac0791ccdc7dc6c1b2578b887d6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wqhqfktvfqdr"
-path="res://.godot/imported/grass_tileset.png-3de2fe25b18860c2e065b17d251381aa.ctex"
+uid="uid://b3n2ecmcifejh"
+path="res://.godot/imported/Serene_Village_16x16.png-05d39daf79741e7b120672f6fdf011d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/grass_tileset.png"
-dest_files=["res://.godot/imported/grass_tileset.png-3de2fe25b18860c2e065b17d251381aa.ctex"]
+source_file="res://World/Assets/Serene_Village_16x16.png"
+dest_files=["res://.godot/imported/Serene_Village_16x16.png-05d39daf79741e7b120672f6fdf011d2.ctex"]
 
 [params]
 

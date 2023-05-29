@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyaqbeeaicu18"]
+
+[ext_resource type="Script" path="res://Components/InteractionComponent.gd" id="1_rfwau"]
+
+[node name="InteractionComponent" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_rfwau")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

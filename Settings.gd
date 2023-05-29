@@ -6,16 +6,19 @@ const TILESIZE = 16
 const OFFSET = TILESIZE / 2
 
 # Map size
-# Width and height in pixels
-const WIDTH = 800
-const HEIGHT = 450
-
 # Width and height in tiles
-# Because of const manually calculate WIDTH or HEIGHT / TILESIZE
-const MAPWIDTH = 50
-const MAPHEIGHT = 28
+const WIDTH = 50
+const HEIGHT = 28
+
+const MAXBUGS = 10
+const MAXFISH = 10
+
+const DAYLENGTH = 1 * 60  # In seconds
+
 
 # Location of nodes in global tree
-const TREENODEPATH = "World/ysort/Trees"
-const FLOWERNODEPATH = "World/ysort/Flowers"
-const STRUCTURENODEPATH = "World/ysort/Structures"
+const NODESROOT = "World/ysort/"
+const TREENODEPATH = NODESROOT + "Trees"
+const FLOWERNODEPATH = NODESROOT + "Flowers"
+const STRUCTURENODEPATH = NODESROOT + "Structures"
+const BUGSNODEPATH = NODESROOT + "Bugs"

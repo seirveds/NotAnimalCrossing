@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmeuuddqau4qs"]
+[gd_scene load_steps=33 format=3 uid="uid://cmeuuddqau4qs"]
 
 [ext_resource type="Texture2D" uid="uid://cll6fcpd83wmk" path="res://Critters/Butterfly.png" id="1_355ox"]
 [ext_resource type="Script" path="res://Critters/Butterfly.gd" id="1_lmjaf"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_ebwoc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lc6um"]
 radius = 8.0
@@ -10,7 +11,7 @@ radius = 8.0
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rnrqe"]
-radius = 80.0
+radius = 128.0
 
 [sub_resource type="Animation" id="Animation_vtfcr"]
 resource_name = "idle"
@@ -328,6 +329,9 @@ graph_offset = Vector2(-53, -10)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2mokk"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7jo8"]
+radius = 0.0
+
 [node name="Butterfly" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_lmjaf")
@@ -342,8 +346,9 @@ scale = Vector2(0.25, 0.5)
 texture = ExtResource("1_355ox")
 
 [node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 16
+visible = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 scale = Vector2(0.5, 0.5)
@@ -370,10 +375,17 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Moving/blend_position = Vector2(0, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="InteractionComponent" parent="." instance=ExtResource("3_ebwoc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
+shape = SubResource("CircleShape2D_h7jo8")
+
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="interaction" from="InteractionComponent" to="." method="_on_interaction_component_interaction"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3n2ecmcifejh"
-path="res://.godot/imported/Serene_Village_16x16.png-e0454f0181e9f24855e2c69176a3f791.ctex"
+uid="uid://vgtvlqyh1p50"
+path="res://.godot/imported/House.png-0c8721170b2e0c0245d4df791525b2a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Serene_Village_16x16.png"
-dest_files=["res://.godot/imported/Serene_Village_16x16.png-e0454f0181e9f24855e2c69176a3f791.ctex"]
+source_file="res://World/Assets/House.png"
+dest_files=["res://.godot/imported/House.png-0c8721170b2e0c0245d4df791525b2a9.ctex"]
 
 [params]
 

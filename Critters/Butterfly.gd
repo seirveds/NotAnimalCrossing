@@ -20,11 +20,7 @@ var targetPosition = Vector2.ZERO
 
 func _ready():
 	start_timer()
-	
-func _process(delta):
-	if Input.is_action_just_pressed("interact") and catchable:
-		# Placeholder,should add to player inventory
-		queue_free()
+
 
 func _physics_process(delta):
 	match state:
@@ -94,18 +90,14 @@ func set_animationtree_blend_position(velocity: Vector2):
 	animationTree.set("parameters/Moving/blend_position", velocity)
 
 
-func _on_interaction_area_area_entered(area):
-	if area.name == "PlayerInteractionArea":
-		catchable = true
-
-
-func _on_interaction_area_area_exited(area):
-	catchable = false
-
-
 func _on_timer_timeout():
 	if state in [WANDER, IDLE]:
 		find_flower()
 	else:
 		pass
 	start_timer()
+
+
+func _on_interaction_component_interaction():
+	# TODO add to inventory
+	queue_free()
