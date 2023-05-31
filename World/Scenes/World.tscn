@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmhkxj35tmyiq"]
+[gd_scene load_steps=31 format=3 uid="uid://cmhkxj35tmyiq"]
 
 [ext_resource type="Script" path="res://World/Scripts/World.gd" id="1_ki8to"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/Assets/water_tileset.png" id="2_rja2r"]
@@ -1003,6 +1003,10 @@ _data = {
 "RESET": SubResource("Animation_25qc0")
 }
 
+[sub_resource type="Theme" id="Theme_yed3k"]
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 10
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_ki8to")
 randomSeed = 1338
@@ -1043,5 +1047,29 @@ libraries = {
 }
 
 [node name="DayClock" type="Timer" parent="DayNightCycle"]
+
+[node name="DateTimeUI" type="CanvasLayer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="DateTimeUI"]
+offset_left = 11.0
+offset_top = 319.0
+offset_right = 52.0
+offset_bottom = 345.0
+text = "00:00"
+
+[node name="Divider" type="ColorRect" parent="DateTimeUI"]
+offset_left = 6.0
+offset_top = 339.0
+offset_right = 59.0
+offset_bottom = 340.0
+
+[node name="DateLabel" type="RichTextLabel" parent="DateTimeUI"]
+offset_left = 8.0
+offset_top = 339.0
+offset_right = 84.0
+offset_bottom = 355.0
+theme = SubResource("Theme_yed3k")
+bbcode_enabled = true
+text = "Spring 01"
 
 [connection signal="timeout" from="DayNightCycle/DayClock" to="DayNightCycle" method="_on_day_clock_timeout"]
