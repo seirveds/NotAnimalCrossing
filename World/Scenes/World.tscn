@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmhkxj35tmyiq"]
+[gd_scene load_steps=32 format=3 uid="uid://cmhkxj35tmyiq"]
 
 [ext_resource type="Script" path="res://World/Scripts/World.gd" id="1_ki8to"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/Assets/water_tileset.png" id="2_rja2r"]
 [ext_resource type="Texture2D" uid="uid://cq4b7iof23fif" path="res://World/Assets/BridgeTiles.png" id="3_5jp7b"]
 [ext_resource type="Texture2D" uid="uid://wqhqfktvfqdr" path="res://World/Assets/grass_tileset.png" id="4_q71cd"]
 [ext_resource type="Texture2D" uid="uid://vbk2n8g57ykm" path="res://World/Assets/cliffs_tileset.png" id="5_py6yi"]
+[ext_resource type="PackedScene" uid="uid://hc4nc1i40dnc" path="res://Critters/Firefly.tscn" id="6_0dlxx"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="6_7026v"]
 [ext_resource type="Script" path="res://World/Scripts/DayNightCycle.gd" id="7_716y1"]
 
@@ -1018,6 +1019,9 @@ format = 2
 
 [node name="ysort" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Firefly" parent="ysort" instance=ExtResource("6_0dlxx")]
+position = Vector2(48, 76)
 
 [node name="Alex" parent="ysort" instance=ExtResource("6_7026v")]
 position = Vector2(32, 104)

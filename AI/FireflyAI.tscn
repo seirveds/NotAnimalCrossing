@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0fu2rjdxlkov"]
+
+[ext_resource type="Script" path="res://AI/FireflyAI.gd" id="1_i1lem"]
+
+[node name="FireflyAI" type="Node2D"]
+script = ExtResource("1_i1lem")

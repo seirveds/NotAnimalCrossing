@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmeuuddqau4qs"]
+[gd_scene load_steps=32 format=3 uid="uid://da0vumf71llsg"]
 
 [ext_resource type="Texture2D" uid="uid://cll6fcpd83wmk" path="res://Critters/Butterfly.png" id="1_355ox"]
 [ext_resource type="Script" path="res://Critters/Butterfly.gd" id="1_lmjaf"]
-[ext_resource type="PackedScene" uid="uid://ckvfb5ac84uyw" path="res://Components/ButterflyAI.tscn" id="2_0gqyk"]
+[ext_resource type="PackedScene" uid="uid://boc21ecf54fio" path="res://AI/ButterflyAI.tscn" id="2_0gqyk"]
 [ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_ebwoc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lc6um"]

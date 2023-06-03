@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckvfb5ac84uyw"]
+[gd_scene load_steps=3 format=3 uid="uid://boc21ecf54fio"]
 
-[ext_resource type="Script" path="res://Components/ButterflyAI.gd" id="1_ye37y"]
+[ext_resource type="Script" path="res://AI/ButterflyAI.gd" id="1_ye37y"]
 [ext_resource type="PackedScene" uid="uid://lm7huls8w5mj" path="res://Components/SearchArea.tscn" id="2_ojdyg"]
 
 [node name="ButterflyAI" type="Node2D"]
