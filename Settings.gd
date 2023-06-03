@@ -13,7 +13,7 @@ const HEIGHT = 28
 const MAXBUGS = 10
 const MAXFISH = 10
 
-const DAYLENGTH = 1  # In seconds
+const DAYLENGTH = 60  # In seconds
 const SEASONLENGTH = 28  # In days
 const SEASONS = ["Spring", "Summer", "Autumn", "Winter"]
 

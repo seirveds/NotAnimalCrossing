@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckvfb5ac84uyw"]
+
+[ext_resource type="Script" path="res://Components/ButterflyAI.gd" id="1_ye37y"]
+[ext_resource type="PackedScene" uid="uid://lm7huls8w5mj" path="res://Components/SearchArea.tscn" id="2_ojdyg"]
+
+[node name="ButterflyAI" type="Node2D"]
+script = ExtResource("1_ye37y")
+
+[node name="SearchArea" parent="." instance=ExtResource("2_ojdyg")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1051,10 +1051,10 @@ libraries = {
 [node name="DateTimeUI" type="CanvasLayer" parent="."]
 
 [node name="TimeLabel" type="Label" parent="DateTimeUI"]
-offset_left = 11.0
-offset_top = 319.0
-offset_right = 52.0
-offset_bottom = 345.0
+offset_left = 12.0
+offset_top = 318.0
+offset_right = 53.0
+offset_bottom = 344.0
 text = "00:00"
 
 [node name="Divider" type="ColorRect" parent="DateTimeUI"]
@@ -1063,13 +1063,14 @@ offset_top = 339.0
 offset_right = 59.0
 offset_bottom = 340.0
 
-[node name="DateLabel" type="RichTextLabel" parent="DateTimeUI"]
-offset_left = 8.0
+[node name="DateLabel" type="Label" parent="DateTimeUI"]
+offset_left = 5.0
 offset_top = 339.0
-offset_right = 84.0
-offset_bottom = 355.0
+offset_right = 63.0
+offset_bottom = 356.0
 theme = SubResource("Theme_yed3k")
-bbcode_enabled = true
-text = "Spring 01"
+theme_override_font_sizes/font_size = 10
+text = "Spring  01"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="DayNightCycle/DayClock" to="DayNightCycle" method="_on_day_clock_timeout"]
