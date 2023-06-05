@@ -1,7 +1,15 @@
 extends CharacterBody2D
 
+@onready var light = $Light
+
 
 func _physics_process(delta):
+	# TEMP
+	if Globals.hour < 5 or Globals.hour > 18:
+		light.set("enabled", true)
+	else:
+		light.set("enabled", false)
+		
 	move_and_slide()
 
 

@@ -24,3 +24,6 @@ const TREENODEPATH = NODESROOT + "Trees"
 const FLOWERNODEPATH = NODESROOT + "Flowers"
 const STRUCTURENODEPATH = NODESROOT + "Structures"
 const BUGSNODEPATH = NODESROOT + "Bugs"
+
+# Filepaths
+const BUGTEXTUREPATH = "res://Critters/"

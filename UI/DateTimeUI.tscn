@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://celosbcpactua"]
+
+[sub_resource type="Theme" id="Theme_yed3k"]
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 10
+
+[node name="DateTimeUI" type="CanvasLayer"]
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 318.0
+offset_right = 53.0
+offset_bottom = 344.0
+text = "00:00"
+
+[node name="Divider" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 339.0
+offset_right = 59.0
+offset_bottom = 340.0
+
+[node name="DateLabel" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 339.0
+offset_right = 63.0
+offset_bottom = 356.0
+theme = SubResource("Theme_yed3k")
+theme_override_font_sizes/font_size = 10
+text = "Spring  01"
+horizontal_alignment = 1

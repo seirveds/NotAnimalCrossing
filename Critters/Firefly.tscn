@@ -20,7 +20,7 @@ texture = ExtResource("1_wgn4c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
 shape = SubResource("CircleShape2D_61we7")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Light" type="PointLight2D" parent="."]
 position = Vector2(1, -1)
 color = Color(1, 0.898039, 0.235294, 1)
 texture = ExtResource("2_uv8c1")

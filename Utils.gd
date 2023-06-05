@@ -1,6 +1,9 @@
 extends Node
 class_name Utils
 
+#############
+# World gen #
+#############
 static func randomCoordinateVector(
 		mapWidth: int,
 		mapHeight: int,
@@ -32,16 +35,16 @@ static func getBorderingTiles(tile: Vector2i, borderSize: int = 1) -> Array:
 			borderingTiles.append(Vector2i(x, y))
 	return borderingTiles
 
-static func borderTilesFree(
-		tile: Vector2i,
-		borderSize: int = 1
-	) -> bool:
+static func borderTilesFree(tile: Vector2i, borderSize: int = 1) -> bool:
 	# Given tile coordinates, check if cells around tile are free
 	for borderTile in getBorderingTiles(tile, borderSize):
 		if borderTile in Globals.usedTiles:
 			return false
 	return true
-	
+
+###########
+# Generic #
+###########
 static func clearNodeChildren(tree: SceneTree, nodePath: String):
 	var node = tree.get_root().get_node(nodePath)
 	for n in node.get_children():
@@ -54,3 +57,10 @@ static func zip(arr1: Array, arr2: Array) -> Array:
 	for i in range(arr1.size()):
 		out.append([arr1[i], arr2[i]])
 	return out
+
+#############
+# Inventory #
+#############
+static func catchBug(instance: CharacterBody2D):
+	print(instance)
+	instance.queue_free()

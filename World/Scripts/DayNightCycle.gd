@@ -29,6 +29,7 @@ func secondsPassed() -> float:
 func calculateClockTime(seconds: float) -> String:
 	var remappedSeconds = remap(seconds, 0, Settings.DAYLENGTH, 0, 24 * 60 * 60)
 	var hours = floor(remappedSeconds / 3600)
+	Globals.hour = hours
 	var minutes = floor(fmod(remappedSeconds, 3600) / 60)
 	return "%02d:%02d" % [hours, minutes]
 	

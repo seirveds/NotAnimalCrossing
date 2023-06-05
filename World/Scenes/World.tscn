@@ -1,13 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmhkxj35tmyiq"]
+[gd_scene load_steps=31 format=3 uid="uid://cmhkxj35tmyiq"]
 
 [ext_resource type="Script" path="res://World/Scripts/World.gd" id="1_ki8to"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/Assets/water_tileset.png" id="2_rja2r"]
 [ext_resource type="Texture2D" uid="uid://cq4b7iof23fif" path="res://World/Assets/BridgeTiles.png" id="3_5jp7b"]
 [ext_resource type="Texture2D" uid="uid://wqhqfktvfqdr" path="res://World/Assets/grass_tileset.png" id="4_q71cd"]
 [ext_resource type="Texture2D" uid="uid://vbk2n8g57ykm" path="res://World/Assets/cliffs_tileset.png" id="5_py6yi"]
-[ext_resource type="PackedScene" uid="uid://hc4nc1i40dnc" path="res://Critters/Firefly.tscn" id="6_0dlxx"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="6_7026v"]
 [ext_resource type="Script" path="res://World/Scripts/DayNightCycle.gd" id="7_716y1"]
+[ext_resource type="PackedScene" uid="uid://celosbcpactua" path="res://UI/DateTimeUI.tscn" id="9_gjqan"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_o51up"]
 tile_data = PackedInt32Array(196608, 131074, 1, 262144, 131074, 2, 327680, 131074, 2, 393216, 131074, 3, 1, 0, 1, 65537, 0, 1, 131073, 0, 1, 196609, 0, 1, 262145, 0, 1, 327681, 0, 1, 393217, 393216, 2, 2, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 262146, 65536, 1, 327682, 65536, 1, 393218, 65536, 1, 3, 131072, 1, 65539, 131072, 1, 131075, 131072, 1, 196611, 131072, 1, 262147, 131072, 1, 327683, 131072, 1, 393219, 327680, 2, 196612, 2, 1, 262148, 2, 2, 327684, 2, 2, 393220, 2, 3)
@@ -1004,10 +1004,6 @@ _data = {
 "RESET": SubResource("Animation_25qc0")
 }
 
-[sub_resource type="Theme" id="Theme_yed3k"]
-RichTextLabel/font_sizes/bold_font_size = 16
-RichTextLabel/font_sizes/normal_font_size = 10
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_ki8to")
 randomSeed = 1338
@@ -1019,9 +1015,6 @@ format = 2
 
 [node name="ysort" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Firefly" parent="ysort" instance=ExtResource("6_0dlxx")]
-position = Vector2(48, 76)
 
 [node name="Alex" parent="ysort" instance=ExtResource("6_7026v")]
 position = Vector2(32, 104)
@@ -1052,29 +1045,6 @@ libraries = {
 
 [node name="DayClock" type="Timer" parent="DayNightCycle"]
 
-[node name="DateTimeUI" type="CanvasLayer" parent="."]
-
-[node name="TimeLabel" type="Label" parent="DateTimeUI"]
-offset_left = 12.0
-offset_top = 318.0
-offset_right = 53.0
-offset_bottom = 344.0
-text = "00:00"
-
-[node name="Divider" type="ColorRect" parent="DateTimeUI"]
-offset_left = 6.0
-offset_top = 339.0
-offset_right = 59.0
-offset_bottom = 340.0
-
-[node name="DateLabel" type="Label" parent="DateTimeUI"]
-offset_left = 5.0
-offset_top = 339.0
-offset_right = 63.0
-offset_bottom = 356.0
-theme = SubResource("Theme_yed3k")
-theme_override_font_sizes/font_size = 10
-text = "Spring  01"
-horizontal_alignment = 1
+[node name="DateTimeUI" parent="." instance=ExtResource("9_gjqan")]
 
 [connection signal="timeout" from="DayNightCycle/DayClock" to="DayNightCycle" method="_on_day_clock_timeout"]
