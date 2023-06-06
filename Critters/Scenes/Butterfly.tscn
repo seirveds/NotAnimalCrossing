@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://bbxuqvslucjlj"]
+[gd_scene load_steps=32 format=3 uid="uid://caln2aqh1tbit"]
 
-[ext_resource type="Script" path="res://Critters/Butterfly.gd" id="1_lmjaf"]
-[ext_resource type="PackedScene" uid="uid://boc21ecf54fio" path="res://AI/ButterflyAI.tscn" id="2_0gqyk"]
-[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_ebwoc"]
+[ext_resource type="Script" path="res://Critters/Scripts/Butterfly.gd" id="1_perub"]
+[ext_resource type="PackedScene" uid="uid://boc21ecf54fio" path="res://AI/ButterflyAI.tscn" id="2_x7h40"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_y3eeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lc6um"]
 radius = 8.0
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.6, 1.9, 2.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6mjuj"]
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.6, 1.9, 2.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.6, 1.9, 2.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -98,7 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.6, 1.9, 2.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -139,7 +139,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_utp5e"]
@@ -168,7 +168,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_mvn87"]
@@ -197,7 +197,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6lidu"]
@@ -226,7 +226,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.490018, 0.5), Vector2(0.25, 0.5), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1.02), Vector2(0.5, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_lhp0j"]
@@ -330,9 +330,9 @@ radius = 0.0
 
 [node name="Butterfly" type="CharacterBody2D"]
 collision_layer = 8
-script = ExtResource("1_lmjaf")
+script = ExtResource("1_perub")
 
-[node name="ButterflyAI" parent="." instance=ExtResource("2_0gqyk")]
+[node name="ButterflyAI" parent="." instance=ExtResource("2_x7h40")]
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(0.632, 0.632)
@@ -356,7 +356,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2mokk")
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Moving/blend_position = Vector2(0, 0)
 
-[node name="InteractionComponent" parent="." instance=ExtResource("3_ebwoc")]
+[node name="InteractionComponent" parent="." instance=ExtResource("3_y3eeu")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
 shape = SubResource("CircleShape2D_h7jo8")

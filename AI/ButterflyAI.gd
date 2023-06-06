@@ -13,7 +13,7 @@ enum {
 }
 var state = IDLE
 
-const SPEED = 20
+var speed = 20
 var angle = -PI
 var catchable = false
 var targetPosition = Vector2.ZERO
@@ -39,7 +39,7 @@ func _physics_process(delta):
 
 func flying_state(delta):
 	navigationAgent.target_position = targetPosition
-	velocity = (navigationAgent.get_next_path_position() - self.global_position).normalized() * SPEED
+	velocity = (navigationAgent.get_next_path_position() - self.global_position).normalized() * speed
 	
 	if self.global_position.distance_to(targetPosition) < 1:
 		state = IDLE
@@ -57,7 +57,7 @@ func wander_state(delta):
 	angle += delta
 	if angle > PI:
 		angle = -PI
-	velocity = Vector2(cos(angle), sin(angle)) * SPEED
+	velocity = Vector2(cos(angle), sin(angle)) * speed
 
 
 func find_flower(radius: int = 5):

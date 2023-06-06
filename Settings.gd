@@ -26,4 +26,5 @@ const STRUCTURENODEPATH = NODESROOT + "Structures"
 const BUGSNODEPATH = NODESROOT + "Bugs"
 
 # Filepaths
-const BUGTEXTUREPATH = "res://Critters/"
+const BUGTEXTUREPATH = "res://Critters/Assets/"
+const BUGSCENEPATH = "res://Critters/Scenes/"

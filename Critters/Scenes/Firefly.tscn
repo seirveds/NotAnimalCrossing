@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://blpfs7ht111w5"]
+
+[ext_resource type="Script" path="res://Critters/Scripts/Firefly.gd" id="1_4hmob"]
+[ext_resource type="Texture2D" uid="uid://ci5hulj1gvsj6" path="res://Critters/Assets/Firefly.png" id="2_hgmt6"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_ka1nk"]
+[ext_resource type="Texture2D" uid="uid://b6hexgpa6t4ng" path="res://Critters/Assets/light.png" id="4_d6nyl"]
+[ext_resource type="PackedScene" uid="uid://b0fu2rjdxlkov" path="res://AI/FireflyAI.tscn" id="5_jkufw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61we7"]
+radius = 5.0
+
+[node name="Firefly" type="CharacterBody2D"]
+script = ExtResource("1_4hmob")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hgmt6")
+
+[node name="InteractionComponent" parent="." instance=ExtResource("3_ka1nk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
+shape = SubResource("CircleShape2D_61we7")
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(1, -1)
+color = Color(1, 0.898039, 0.235294, 1)
+texture = ExtResource("4_d6nyl")
+texture_scale = 0.05
+
+[node name="FireflyAI" parent="." instance=ExtResource("5_jkufw")]
+
+[connection signal="interaction" from="InteractionComponent" to="." method="_on_interaction_component_interaction"]
+[connection signal="velocityChanged" from="FireflyAI" to="." method="_on_firefly_ai_velocity_changed"]

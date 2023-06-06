@@ -3,14 +3,27 @@ extends CharacterBody2D
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var sprite = $Sprite2D
+@onready var ai = $ButterflyAI
 
-var texture : String
 
-func _init(newTexture: String = "Common_Butterfly.png"):
+var texture
+var entityName
+var speed
+
+func _init(
+		newEntityname: String = "Common Butterfly",
+		newTexture: String = "Common_Butterfly.png",
+		newSpeed: int = 20
+	):
 	texture = "%s%s" % [Settings.BUGTEXTUREPATH, newTexture]
+	entityName = newEntityname
+	speed = newSpeed
+	
 
 func _ready():
 	sprite.set("texture", load(texture))
+	ai.speed = speed
+	
 
 func _physics_process(delta):
 	move_and_slide()
