@@ -1,14 +1,12 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://fr0q4aglx1p5"]
 
 [ext_resource type="Script" path="res://World/Scripts/RandomTree.gd" id="1_hlsks"]
 [ext_resource type="Texture2D" uid="uid://blk1qtwncwl2j" path="res://World/Assets/Trees.png" id="2_hwnjp"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_4057s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1sft"]
 radius = 4.0
 height = 16.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mqrrb"]
-radius = 5.0
 
 [sub_resource type="Animation" id="Animation_pbhy2"]
 length = 0.001
@@ -46,6 +44,9 @@ _data = {
 "Shake": SubResource("Animation_x0vwp")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cn4dn"]
+radius = 5.09902
+
 [node name="RandomTree" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_hlsks")
@@ -60,14 +61,6 @@ position = Vector2(0, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g1sft")
 
-[node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_mqrrb")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4v8kg")
@@ -77,5 +70,10 @@ libraries = {
 estimate_radius = false
 radius = 36.09
 
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
+[node name="InteractionComponent" parent="." instance=ExtResource("3_4057s")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_cn4dn")
+
+[connection signal="interaction" from="InteractionComponent" to="." method="_on_interaction_component_interaction"]

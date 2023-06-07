@@ -1,10 +1,8 @@
 extends StaticBody2D
 
-@onready var interactionArea = $InteractionArea
 @onready var animationPlayer = $AnimationPlayer
 @onready var sprite = $Sprite
 
-var canBeShaken = false
 
 func _ready():
 	# Using frames we can pick a random tree sprite to show
@@ -14,14 +12,8 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("interact") and canBeShaken:
-		animationPlayer.play("Shake")
+	pass
 
 
-func _on_interaction_area_area_entered(area):
-	if area.name == "PlayerInteractionArea":
-		canBeShaken = true
-
-
-func _on_interaction_area_area_exited(area):
-	canBeShaken = false
+func _on_interaction_component_interaction():
+	animationPlayer.play("Shake")

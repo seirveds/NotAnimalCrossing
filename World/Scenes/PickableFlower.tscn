@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://bg67bmf0fct36"]
 
-[ext_resource type="Script" path="res://World/Scripts/PickableFlower.gd" id="1_ny74v"]
+[ext_resource type="Script" path="res://World/Scripts/PickableFlower.gd" id="1_qj1qr"]
 [ext_resource type="Texture2D" uid="uid://bp0hjkshx8n7o" path="res://World/Assets/PickableFlower.png" id="2_jm5ml"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_qaa64"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_waxdi"]
-radius = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_dynus"]
+radius = 0.0
 
 [sub_resource type="Animation" id="Animation_h5hph"]
 length = 0.001
@@ -43,28 +44,30 @@ _data = {
 "Shake": SubResource("Animation_wxug4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov2df"]
+radius = 6.0
+
 [node name="PickableFlower" type="StaticBody2D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_ny74v")
+script = ExtResource("1_qj1qr")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(1, 0)
 texture = ExtResource("2_jm5ml")
 hframes = 5
 
-[node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-scale = Vector2(0.76, 0.76)
-shape = SubResource("CircleShape2D_waxdi")
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dynus")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1m3by")
 }
 
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
+[node name="InteractionComponent" parent="." instance=ExtResource("3_qaa64")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
+shape = SubResource("CircleShape2D_ov2df")
+
+[connection signal="interaction" from="InteractionComponent" to="." method="_on_interaction_component_interaction"]

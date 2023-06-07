@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://7cmgr2qhfva2"]
+[gd_scene load_steps=5 format=3 uid="uid://7cmgr2qhfva2"]
 
 [ext_resource type="Script" path="res://World/Scripts/House.gd" id="1_2ja4t"]
 [ext_resource type="Texture2D" uid="uid://baxewpo1jauiq" path="res://World/Assets/Houses.png" id="2_bf1c7"]
+[ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_rgvdb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_54klf"]
-size = Vector2(16, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chguc"]
+size = Vector2(12, 13)
 
 [node name="House" type="StaticBody2D"]
 y_sort_enabled = true
@@ -21,18 +22,12 @@ frame = 2
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -11)
 build_mode = 1
-polygon = PackedVector2Array(-22, 13, -8, 13, -8, 7, 8, 7, 8, 13, 22, 13, 22, -11, -22, -11)
+polygon = PackedVector2Array(-20, 11, -8, 11, -8, 5, 8, 5, 8, 11, 20, 11, 20, -11, -20, -11)
 
-[node name="InteractionArea" type="Area2D" parent="."]
-position = Vector2(0, -10)
-collision_layer = 16
-collision_mask = 16
+[node name="InteractionComponent" parent="." instance=ExtResource("3_rgvdb")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-light_mask = 0
-visibility_layer = 0
-y_sort_enabled = true
-shape = SubResource("RectangleShape2D_54klf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponent"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_chguc")
 
-[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
-[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
+[connection signal="interaction" from="InteractionComponent" to="." method="_on_interaction_component_interaction"]
