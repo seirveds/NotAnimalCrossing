@@ -58,9 +58,24 @@ static func zip(arr1: Array, arr2: Array) -> Array:
 		out.append([arr1[i], arr2[i]])
 	return out
 
+
+########
+# JSON #
+########
+static func parse_json(text):
+	return JSON.parse_string(text)
+
+static func read_json_file(file_path):
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var content_as_text = file.get_as_text()
+	var content_as_dictionary = parse_json(content_as_text)
+	return content_as_dictionary
+
 #############
 # Inventory #
 #############
 static func catchBug(instance: CharacterBody2D):
 	print(instance)
+	print(instance.speed, instance.texture, instance.entityName)
 	instance.queue_free()
+	Globals.inventory.append(instance.name)

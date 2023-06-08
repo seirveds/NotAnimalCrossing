@@ -18,6 +18,10 @@ func get_speed():
 	if run_key_pressed():
 		return 60
 	return 30
+	
+func _input(event):
+	if Input.is_action_just_pressed("Inventory"):
+		print(Globals.inventory)
 
 
 func _physics_process(delta):

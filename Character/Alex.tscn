@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cisqlsatus7nn"]
+[gd_scene load_steps=43 format=3 uid="uid://cisqlsatus7nn"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_trgjv"]
 [ext_resource type="Texture2D" uid="uid://bjbgkp6qajdo0" path="res://Character/Alex.png" id="2_bsqcd"]
@@ -356,9 +356,6 @@ graph_offset = Vector2(213, -193)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s00iy"]
 size = Vector2(7, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5tqw"]
-size = Vector2(4, 4)
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -400,11 +397,3 @@ collision_mask = 16
 [node name="InteractionAreaHitbox" type="CollisionShape2D" parent="DirectionMarker/PlayerInteractionArea"]
 light_mask = 2
 shape = SubResource("RectangleShape2D_s00iy")
-
-[node name="PlayerUnderfootInteractionArea" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="PlayerUnderfootInteractionHitbox" type="CollisionShape2D" parent="PlayerUnderfootInteractionArea"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_k5tqw")

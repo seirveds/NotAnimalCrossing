@@ -5,6 +5,4 @@ var usedTiles = []
 var day = 0
 var hour = 0
 
-const bugs = {
-	
-}
+var inventory = []

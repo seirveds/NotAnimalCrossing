@@ -36,7 +36,8 @@ func setCameraLimits():
 func spawnBug(tree: SceneTree):
 	# TODO non uniform distribution
 	# TODO spawn conditions
-	var bugToSpawn = Critters.BUGS.pick_random()
+	var bugToSpawnId = Data.BUGS.keys().pick_random()
+	var bugToSpawn = Data.BUGS[bugToSpawnId]
 	var factory = load("%s%s" % [Settings.BUGSCENEPATH, bugToSpawn["scene"]])
 	var instance = factory.instantiate()
 	instance._init(

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://defnbj1ec0ms2"]
+
+[node name="Inventory" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 24.0
+offset_bottom = 24.0
