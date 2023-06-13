@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://celosbcpactua"]
+[gd_scene load_steps=3 format=3 uid="uid://celosbcpactua"]
+
+[sub_resource type="Theme" id="Theme_t8tpw"]
+Label/fonts/font = null
 
 [sub_resource type="Theme" id="Theme_yed3k"]
 RichTextLabel/font_sizes/bold_font_size = 16
@@ -11,6 +14,7 @@ offset_left = 12.0
 offset_top = 318.0
 offset_right = 53.0
 offset_bottom = 344.0
+theme = SubResource("Theme_t8tpw")
 text = "00:00"
 
 [node name="Divider" type="ColorRect" parent="."]

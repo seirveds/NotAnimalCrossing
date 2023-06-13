@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://4n58namro8vo"]
+
+[ext_resource type="Texture2D" uid="uid://cll6fcpd83wmk" path="res://Critters/Assets/Common_Butterfly.png" id="1_gm5wt"]
+[ext_resource type="Script" path="res://UI/ItemSlot.gd" id="1_yy7f1"]
+[ext_resource type="FontFile" uid="uid://w0bba3oh4ic6" path="res://UI/GravityRegular5.ttf" id="3_ec8si"]
+
+[sub_resource type="Theme" id="Theme_qr45p"]
+Label/constants/line_spacing = 3
+Label/font_sizes/font_size = 5
+Label/fonts/font = ExtResource("3_ec8si")
+
+[node name="ItemSlot" type="ColorRect"]
+custom_minimum_size = Vector2(18, 18)
+color = Color(0.2, 0.2, 0.2, 1)
+script = ExtResource("1_yy7f1")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 17.0
+texture = ExtResource("1_gm5wt")
+
+[node name="ItemQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 17.0
+theme = SubResource("Theme_qr45p")
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2

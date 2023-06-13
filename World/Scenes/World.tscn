@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmhkxj35tmyiq"]
+[gd_scene load_steps=32 format=3 uid="uid://cmhkxj35tmyiq"]
 
 [ext_resource type="Script" path="res://World/Scripts/World.gd" id="1_ki8to"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/Assets/water_tileset.png" id="2_rja2r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://vbk2n8g57ykm" path="res://World/Assets/cliffs_tileset.png" id="5_py6yi"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="6_7026v"]
 [ext_resource type="Script" path="res://World/Scripts/DayNightCycle.gd" id="7_716y1"]
+[ext_resource type="PackedScene" uid="uid://bue3afloe0p7s" path="res://UI/Inventory.tscn" id="9_3pkv6"]
 [ext_resource type="PackedScene" uid="uid://celosbcpactua" path="res://UI/DateTimeUI.tscn" id="9_gjqan"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_o51up"]
@@ -1044,6 +1045,10 @@ libraries = {
 
 [node name="DayClock" type="Timer" parent="DayNightCycle"]
 
-[node name="DateTimeUI" parent="." instance=ExtResource("9_gjqan")]
+[node name="UI" type="Node2D" parent="."]
+
+[node name="DateTimeUI" parent="UI" instance=ExtResource("9_gjqan")]
+
+[node name="Inventory" parent="UI" instance=ExtResource("9_3pkv6")]
 
 [connection signal="timeout" from="DayNightCycle/DayClock" to="DayNightCycle" method="_on_day_clock_timeout"]

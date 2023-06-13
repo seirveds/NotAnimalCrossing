@@ -2,7 +2,7 @@ extends CanvasModulate
 
 @onready var timer = $DayClock
 @onready var animationPlayer = $AnimationPlayer
-@onready var uiNode = get_tree().get_root().get_node("World/DateTimeUI")
+@onready var uiNode = get_tree().get_root().get_node("World/UI/DateTimeUI")
 @onready var timeLabel = uiNode.get_node("TimeLabel")
 @onready var dateLabel = uiNode.get_node("DateLabel")
 

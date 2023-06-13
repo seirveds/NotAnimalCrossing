@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var camera = $ysort/Alex/Camera2D
 @onready var tilemap = $Tilemap
+@onready var inventory = $UI/Inventory
 @onready var tree = get_tree()
 @onready var bugNode = tree.get_root().get_node(Settings.BUGSNODEPATH)
 
@@ -14,12 +15,15 @@ func _ready():
 	seed(randomSeed)
 	setCameraLimits()
 	WorldGen.generateWorld(tree, tilemap)
+	inventory.set("columns", PlayerInventory.COLS)
 	
 func _process(delta):
 
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		WorldGen.clearWorld(tree, tilemap)
 		WorldGen.generateWorld(tree, tilemap)
+	if Input.is_action_just_pressed("Inventory"):
+		inventory.visible = !inventory.visible
 		
 	# Main loop
 	var bugCount = bugNode.get_child_count()
