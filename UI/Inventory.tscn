@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bue3afloe0p7s"]
-
-[ext_resource type="Script" path="res://UI/Inventory.gd" id="1_gdtry"]
-
-[node name="Inventory" type="GridContainer"]
-script = ExtResource("1_gdtry")
