@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://chkjh5i63bl5g"]
+
+[ext_resource type="Script" path="res://UI/InteractionPopup.gd" id="1_1lu6o"]
+[ext_resource type="FontFile" uid="uid://w0bba3oh4ic6" path="res://UI/GravityRegular5.ttf" id="1_8ncsd"]
+
+[sub_resource type="Theme" id="Theme_jjyxv"]
+Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("1_8ncsd")
+
+[node name="InteractionPopup" type="CanvasLayer"]
+script = ExtResource("1_1lu6o")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = 105.0
+offset_top = 155.0
+offset_right = 224.0
+offset_bottom = 175.0
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 114.0
+offset_bottom = 27.0
+theme = SubResource("Theme_jjyxv")
+text = "testststst"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://caln2aqh1tbit"]
+[gd_scene load_steps=33 format=3 uid="uid://caln2aqh1tbit"]
 
-[ext_resource type="Script" path="res://Critters/Scripts/Butterfly.gd" id="1_perub"]
+[ext_resource type="Script" path="res://Critters/Scripts/Butterfly.gd" id="1_ofpau"]
 [ext_resource type="PackedScene" uid="uid://boc21ecf54fio" path="res://AI/ButterflyAI.tscn" id="2_x7h40"]
+[ext_resource type="PackedScene" uid="uid://ndohfa6ydtfa" path="res://Components/CatchComponent.tscn" id="2_ykp4l"]
 [ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_y3eeu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lc6um"]
@@ -330,7 +331,9 @@ radius = 0.0
 
 [node name="Butterfly" type="CharacterBody2D"]
 collision_layer = 8
-script = ExtResource("1_perub")
+script = ExtResource("1_ofpau")
+
+[node name="CatchComponent" parent="." instance=ExtResource("2_ykp4l")]
 
 [node name="ButterflyAI" parent="." instance=ExtResource("2_x7h40")]
 

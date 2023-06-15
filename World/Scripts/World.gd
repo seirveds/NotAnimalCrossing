@@ -3,9 +3,9 @@ extends Node2D
 # RNG seed
 @export var randomSeed = 1337
 
-@onready var camera = $ysort/Alex/Camera2D
+@onready var camera = $ysort/Alex/Camera
 @onready var tilemap = $Tilemap
-@onready var inventory = $UI/Inventory
+@onready var inventory = $UI/InventoryNode
 @onready var tree = get_tree()
 @onready var bugNode = tree.get_root().get_node(Settings.BUGSNODEPATH)
 
@@ -15,7 +15,6 @@ func _ready():
 	seed(randomSeed)
 	setCameraLimits()
 	WorldGen.generateWorld(tree, tilemap)
-	inventory.set("columns", PlayerInventory.COLS)
 	
 func _process(delta):
 
@@ -23,7 +22,8 @@ func _process(delta):
 		WorldGen.clearWorld(tree, tilemap)
 		WorldGen.generateWorld(tree, tilemap)
 	if Input.is_action_just_pressed("Inventory"):
-		inventory.visible = !inventory.visible
+		inventory.toggle_inventory()
+		
 		
 	# Main loop
 	var bugCount = bugNode.get_child_count()
@@ -44,7 +44,9 @@ func spawnBug(tree: SceneTree):
 	var bugToSpawn = Data.BUGS[bugToSpawnId]
 	var factory = load("%s%s" % [Settings.BUGSCENEPATH, bugToSpawn["scene"]])
 	var instance = factory.instantiate()
+
 	instance._init(
+		bugToSpawnId,
 		bugToSpawn["name"],
 		bugToSpawn["sprite"],
 		bugToSpawn["speed"],

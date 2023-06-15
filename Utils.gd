@@ -49,6 +49,10 @@ static func clearNodeChildren(tree: SceneTree, nodePath: String):
 	var node = tree.get_root().get_node(nodePath)
 	for n in node.get_children():
 		n.queue_free()
+		
+static func removeNodeChildren(node: Node):
+	for n in node.get_children():
+		n.queue_free()
 
 static func zip(arr1: Array, arr2: Array) -> Array:
 	# Works like python's zip method
@@ -70,12 +74,3 @@ static func read_json_file(file_path):
 	var content_as_text = file.get_as_text()
 	var content_as_dictionary = parse_json(content_as_text)
 	return content_as_dictionary
-
-#############
-# Inventory #
-#############
-static func catchBug(instance: CharacterBody2D):
-	print(instance)
-	print(instance.speed, instance.texture, instance.entityName)
-	instance.queue_free()
-	Globals.inventory.append(instance.name)

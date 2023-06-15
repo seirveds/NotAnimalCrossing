@@ -5,25 +5,27 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var ai = $ButterflyAI
 
-
-var texture
-var entityName
-var speed
+var id : String
+var texture : String
+var entityName : String
+var speed : int
 
 func _init(
+		newId: String = "101",
 		newEntityname: String = "Common Butterfly",
 		newTexture: String = "Common_Butterfly.png",
-		newSpeed: int = 20
+		newSpeed: int = 20,
 	):
-	texture = "%s%s" % [Settings.BUGTEXTUREPATH, newTexture]
+	id = newId
 	entityName = newEntityname
+	texture = "%s%s" % [Settings.BUGTEXTUREPATH, newTexture]
 	speed = newSpeed
-	
+
 
 func _ready():
 	sprite.set("texture", load(texture))
 	ai.speed = speed
-	
+
 
 func _physics_process(delta):
 	move_and_slide()
@@ -39,8 +41,7 @@ func update_animationstate(state: int):
 		animationState.travel("Moving")
 
 func _on_interaction_component_interaction():
-	# TODO add to inventory
-	Utils.catchBug(self)
+	$CatchComponent.catch(self)
 
 func _on_butterfly_ai_velocity_changed(newVelocity: Vector2, state: int):
 	velocity = newVelocity

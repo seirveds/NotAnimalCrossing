@@ -11,23 +11,23 @@ RichTextLabel/font_sizes/normal_font_size = 10
 
 [node name="TimeLabel" type="Label" parent="."]
 offset_left = 12.0
-offset_top = 318.0
+offset_top = 139.0
 offset_right = 53.0
-offset_bottom = 344.0
+offset_bottom = 165.0
 theme = SubResource("Theme_t8tpw")
 text = "00:00"
 
 [node name="Divider" type="ColorRect" parent="."]
 offset_left = 6.0
-offset_top = 339.0
+offset_top = 160.0
 offset_right = 59.0
-offset_bottom = 340.0
+offset_bottom = 161.0
 
 [node name="DateLabel" type="Label" parent="."]
 offset_left = 5.0
-offset_top = 339.0
+offset_top = 160.0
 offset_right = 63.0
-offset_bottom = 356.0
+offset_bottom = 177.0
 theme = SubResource("Theme_yed3k")
 theme_override_font_sizes/font_size = 10
 text = "Spring  01"

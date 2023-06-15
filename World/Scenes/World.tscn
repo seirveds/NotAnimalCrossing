@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmhkxj35tmyiq"]
+[gd_scene load_steps=33 format=3 uid="uid://cmhkxj35tmyiq"]
 
 [ext_resource type="Script" path="res://World/Scripts/World.gd" id="1_ki8to"]
 [ext_resource type="Texture2D" uid="uid://vombbyt3uan7" path="res://World/Assets/water_tileset.png" id="2_rja2r"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://vbk2n8g57ykm" path="res://World/Assets/cliffs_tileset.png" id="5_py6yi"]
 [ext_resource type="PackedScene" uid="uid://cisqlsatus7nn" path="res://Character/Alex.tscn" id="6_7026v"]
 [ext_resource type="Script" path="res://World/Scripts/DayNightCycle.gd" id="7_716y1"]
-[ext_resource type="PackedScene" uid="uid://bue3afloe0p7s" path="res://UI/Inventory.tscn" id="9_3pkv6"]
 [ext_resource type="PackedScene" uid="uid://celosbcpactua" path="res://UI/DateTimeUI.tscn" id="9_gjqan"]
+[ext_resource type="PackedScene" uid="uid://chkjh5i63bl5g" path="res://UI/InteractionPopup.tscn" id="9_hvnjs"]
+[ext_resource type="PackedScene" uid="uid://dmmcpaj6acbls" path="res://UI/InventoryNode.tscn" id="9_wvnjp"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_o51up"]
 tile_data = PackedInt32Array(196608, 131074, 1, 262144, 131074, 2, 327680, 131074, 2, 393216, 131074, 3, 1, 0, 1, 65537, 0, 1, 131073, 0, 1, 196609, 0, 1, 262145, 0, 1, 327681, 0, 1, 393217, 393216, 2, 2, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 262146, 65536, 1, 327682, 65536, 1, 393218, 65536, 1, 3, 131072, 1, 65539, 131072, 1, 131075, 131072, 1, 196611, 131072, 1, 262147, 131072, 1, 327683, 131072, 1, 393219, 327680, 2, 196612, 2, 1, 262148, 2, 2, 327684, 2, 2, 393220, 2, 3)
@@ -1020,7 +1021,7 @@ y_sort_enabled = true
 position = Vector2(32, 104)
 collision_layer = 2
 
-[node name="Camera2D" type="Camera2D" parent="ysort/Alex"]
+[node name="Camera" type="Camera2D" parent="ysort/Alex"]
 
 [node name="Structures" type="Node2D" parent="ysort"]
 y_sort_enabled = true
@@ -1049,6 +1050,10 @@ libraries = {
 
 [node name="DateTimeUI" parent="UI" instance=ExtResource("9_gjqan")]
 
-[node name="Inventory" parent="UI" instance=ExtResource("9_3pkv6")]
+[node name="InteractionPopup" parent="UI" instance=ExtResource("9_hvnjs")]
+
+[node name="InventoryNode" parent="UI" instance=ExtResource("9_wvnjp")]
 
 [connection signal="timeout" from="DayNightCycle/DayClock" to="DayNightCycle" method="_on_day_clock_timeout"]
+
+[editable path="UI/DateTimeUI"]
