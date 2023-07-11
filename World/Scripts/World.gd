@@ -5,7 +5,6 @@ extends Node2D
 
 @onready var camera = $ysort/Alex/Camera
 @onready var tilemap = $Tilemap
-@onready var inventory = $UI/InventoryNode
 @onready var tree = get_tree()
 @onready var bugNode = tree.get_root().get_node(Settings.BUGSNODEPATH)
 
@@ -22,7 +21,7 @@ func _process(delta):
 		WorldGen.clearWorld(tree, tilemap)
 		WorldGen.generateWorld(tree, tilemap)
 	if Input.is_action_just_pressed("Inventory"):
-		inventory.toggle_inventory()
+		pass
 		
 		
 	# Main loop

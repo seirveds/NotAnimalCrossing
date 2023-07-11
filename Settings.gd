@@ -24,7 +24,7 @@ const TREENODEPATH = NODESROOT + "Trees"
 const FLOWERNODEPATH = NODESROOT + "Flowers"
 const STRUCTURENODEPATH = NODESROOT + "Structures"
 const BUGSNODEPATH = NODESROOT + "Bugs"
-const UINODEPATH = "World/UI"
+const UINODEPATH = "World/UI/"
 
 # Filepaths
 const BUGTEXTUREPATH = "res://Critters/Assets/"
