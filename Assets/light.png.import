@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8ys7fvqsxm3v"
-path="res://.godot/imported/Tiger_Butterfly.png-e0ecbaf023c7240c45c7cb2d39c6c5aa.ctex"
+uid="uid://b6hexgpa6t4ng"
+path="res://.godot/imported/light.png-2a7c25d2528b528b4775521a146eeb11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Critters/Assets/Tiger_Butterfly.png"
-dest_files=["res://.godot/imported/Tiger_Butterfly.png-e0ecbaf023c7240c45c7cb2d39c6c5aa.ctex"]
+source_file="res://Assets/light.png"
+dest_files=["res://.godot/imported/light.png-2a7c25d2528b528b4775521a146eeb11.ctex"]
 
 [params]
 

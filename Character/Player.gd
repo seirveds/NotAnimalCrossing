@@ -9,6 +9,28 @@ const FRICTION = 1000
 
 @onready var directionMarker = $DirectionMarker
 
+var inventory_data: InventoryData = InventoryData.new()
+
+
+func _ready():
+	# TEMP
+	init_random_inventory_data()
+	
+func init_random_inventory_data():
+	var items = Utils.read_json_file("res://Items.json")
+	var slot_datas = []
+
+	for i in range(18):
+		var slot_data = null
+		if randf() < .5:
+			var rand_id = items.keys().pick_random()
+			var item_data = ItemData.new().init(rand_id)
+			slot_data = SlotData.new().init(item_data)
+
+		slot_datas.append(slot_data)
+		
+	inventory_data.set_slot_datas(slot_datas)
+
 func run_key_pressed():
 	return Input.is_key_pressed(KEY_SHIFT)
 

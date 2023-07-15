@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://blpfs7ht111w5"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Critters/Scripts/Firefly.gd" id="1_4hmob"]
-[ext_resource type="Texture2D" uid="uid://ci5hulj1gvsj6" path="res://Critters/Assets/Firefly.png" id="2_hgmt6"]
+[ext_resource type="Texture2D" uid="uid://ci5hulj1gvsj6" path="res://Assets/Firefly.png" id="2_hgmt6"]
 [ext_resource type="PackedScene" uid="uid://cyaqbeeaicu18" path="res://Components/InteractionComponent.tscn" id="3_ka1nk"]
-[ext_resource type="Texture2D" uid="uid://b6hexgpa6t4ng" path="res://Critters/Assets/light.png" id="4_d6nyl"]
+[ext_resource type="Texture2D" uid="uid://b6hexgpa6t4ng" path="res://Assets/light.png" id="4_d6nyl"]
 [ext_resource type="PackedScene" uid="uid://b0fu2rjdxlkov" path="res://AI/FireflyAI.tscn" id="5_jkufw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61we7"]

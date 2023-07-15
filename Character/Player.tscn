@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://cisqlsatus7nn"]
+[gd_scene load_steps=43 format=3 uid="uid://cisqlsatus7nn"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_trgjv"]
 [ext_resource type="Texture2D" uid="uid://bjbgkp6qajdo0" path="res://Character/Alex.png" id="2_bsqcd"]
-[ext_resource type="PackedScene" uid="uid://wah0fab570e0" path="res://Character/PlayerInventory.tscn" id="2_njo32"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n7ik"]
 radius = 4.0
@@ -361,8 +360,6 @@ size = Vector2(7, 7)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_trgjv")
-
-[node name="PlayerInventory" parent="." instance=ExtResource("2_njo32")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)

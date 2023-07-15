@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr8nxqdynu4o3"]
+
+[ext_resource type="Script" path="res://UI/Inventory/Slot.gd" id="1_nfme2"]
+[ext_resource type="FontFile" uid="uid://w0bba3oh4ic6" path="res://UI/GravityRegular5.ttf" id="2_n7u7l"]
+
+[node name="Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(24, 24)
+offset_right = 20.0
+offset_bottom = 23.0
+script = ExtResource("1_nfme2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Quantity" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_n7u7l")
+theme_override_font_sizes/font_size = 5
+text = "1"

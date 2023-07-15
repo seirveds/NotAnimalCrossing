@@ -3,10 +3,13 @@ extends Node2D
 # RNG seed
 @export var randomSeed = 1337
 
-@onready var camera = $ysort/Alex/Camera
+@onready var camera = $ysort/Player/Camera
 @onready var tilemap = $Tilemap
 @onready var tree = get_tree()
 @onready var bugNode = tree.get_root().get_node(Settings.BUGSNODEPATH)
+
+@onready var player = $ysort/Player
+@onready var inventory_interface = $UI/Inventory/InventoryInterface
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +17,7 @@ func _ready():
 	seed(randomSeed)
 	setCameraLimits()
 	WorldGen.generateWorld(tree, tilemap)
+	inventory_interface.set_player_inventory_data(player.inventory_data)
 	
 func _process(delta):
 
@@ -21,8 +25,7 @@ func _process(delta):
 		WorldGen.clearWorld(tree, tilemap)
 		WorldGen.generateWorld(tree, tilemap)
 	if Input.is_action_just_pressed("Inventory"):
-		pass
-		
+		inventory_interface.visible = not inventory_interface.visible		
 		
 	# Main loop
 	var bugCount = bugNode.get_child_count()

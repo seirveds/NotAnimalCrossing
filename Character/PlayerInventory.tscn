@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://wah0fab570e0"]
-
-[ext_resource type="Script" path="res://Character/PlayerInventory.gd" id="1_v1mso"]
-
-[node name="PlayerInventory" type="Node"]
-script = ExtResource("1_v1mso")

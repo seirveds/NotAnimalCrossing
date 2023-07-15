@@ -18,7 +18,7 @@ func _init(
 	):
 	id = newId
 	entityName = newEntityname
-	texture = "%s%s" % [Settings.BUGTEXTUREPATH, newTexture]
+	texture = "%s%s" % [Settings.TEXTUREPATH, newTexture]
 	speed = newSpeed
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cll6fcpd83wmk"
-path="res://.godot/imported/Common_Butterfly.png-1412a6d22f114279924ceaac3217fd6e.ctex"
+uid="uid://drcdco0bhp5sy"
+path="res://.godot/imported/Emperor_Butterfly.png-74137d5d226650ae9a511189dbe40a80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Critters/Assets/Common_Butterfly.png"
-dest_files=["res://.godot/imported/Common_Butterfly.png-1412a6d22f114279924ceaac3217fd6e.ctex"]
+source_file="res://Assets/Emperor_Butterfly.png"
+dest_files=["res://.godot/imported/Emperor_Butterfly.png-74137d5d226650ae9a511189dbe40a80.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci5hulj1gvsj6"
-path="res://.godot/imported/Firefly.png-01fd65d324edd584de3e243ebcd7a7f3.ctex"
+uid="uid://cwpb24bi4ol2x"
+path="res://.godot/imported/Peacock_Butterfly.png-8fe5a74615befd18cf3f77b3514e1252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Critters/Assets/Firefly.png"
-dest_files=["res://.godot/imported/Firefly.png-01fd65d324edd584de3e243ebcd7a7f3.ctex"]
+source_file="res://Assets/Peacock_Butterfly.png"
+dest_files=["res://.godot/imported/Peacock_Butterfly.png-8fe5a74615befd18cf3f77b3514e1252.ctex"]
 
 [params]
 

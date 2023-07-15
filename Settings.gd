@@ -27,5 +27,5 @@ const BUGSNODEPATH = NODESROOT + "Bugs"
 const UINODEPATH = "World/UI/"
 
 # Filepaths
-const BUGTEXTUREPATH = "res://Critters/Assets/"
+const TEXTUREPATH = "res://Assets/"
 const BUGSCENEPATH = "res://Critters/Scenes/"
