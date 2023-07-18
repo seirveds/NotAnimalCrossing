@@ -9,6 +9,8 @@ const FRICTION = 1000
 
 @onready var directionMarker = $DirectionMarker
 
+signal toggle_inventory_visibility
+
 var inventory_data: InventoryData = InventoryData.new()
 
 
@@ -16,6 +18,7 @@ func _ready():
 	# TEMP
 	init_random_inventory_data()
 	
+# TEMP
 func init_random_inventory_data():
 	var items = Utils.read_json_file("res://Items.json")
 	var slot_datas = []
@@ -40,6 +43,10 @@ func get_speed():
 	if run_key_pressed():
 		return 60
 	return 30
+	
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("Inventory"):
+		toggle_inventory_visibility.emit()
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO

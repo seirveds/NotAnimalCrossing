@@ -10,8 +10,7 @@ extends Node2D
 
 @onready var player = $ysort/Player
 @onready var inventory_interface = $UI/Inventory/InventoryInterface
-
-
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	seed(randomSeed)
@@ -24,8 +23,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_text_backspace"):
 		WorldGen.clearWorld(tree, tilemap)
 		WorldGen.generateWorld(tree, tilemap)
-	if Input.is_action_just_pressed("Inventory"):
-		inventory_interface.visible = not inventory_interface.visible		
 		
 	# Main loop
 	var bugCount = bugNode.get_child_count()

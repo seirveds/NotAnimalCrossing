@@ -31,3 +31,5 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("2_n7u7l")
 theme_override_font_sizes/font_size = 5
 text = "1"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
